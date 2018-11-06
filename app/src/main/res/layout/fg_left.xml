@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="管理学原理（基于周三多第三版)"/>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_margin="10dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="5dp">
+           <include layout="@layout/left_listview"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:padding="3dp"
+            android:textAlignment="center"
+            android:layout_gravity="bottom|end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="从来没有一蹴而就的事 iwh.2018.11.05"/>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

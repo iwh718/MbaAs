@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_iwh_like"
+            android:icon="@drawable/nav_like"
+            android:title="我的收藏" />
+        <item
+            android:id="@+id/nav_iwh_error"
+            android:icon="@drawable/nav_error"
+            android:title="我的错题" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/nav_tool"
+            android:title="计算工具" />
+    </group>
+
+    <item android:title="其它">
+        <menu>
+            <item
+                android:id="@+id/nav_iwh_share"
+                android:icon="@drawable/nav_set"
+                android:title="设置" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/nav_umber"
+                android:title="分享" />
+            <item android:id="@+id/nav_about"
+                android:icon="@drawable/nav_about"
+                android:title="关于"/>
+        </menu>
+    </item>
+
+</menu>
