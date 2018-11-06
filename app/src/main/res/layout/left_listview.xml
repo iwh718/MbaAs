@@ -5,31 +5,7 @@
     android:padding="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:clickable="true"
-        android:focusable="true"
-        android:id="@+id/left_list_item0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:backgroundTint="#83d5cece"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:text="@string/left_list_item0"
 
-            />
-        <ImageView
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:layout_width="0dp"
-            android:layout_weight="0.2"
-            android:layout_height="wrap_content"
-            android:src="@drawable/list_right"/>
-    </LinearLayout>
     <LinearLayout
         android:focusable="true"
         android:clickable="true"

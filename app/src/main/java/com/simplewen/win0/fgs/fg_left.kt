@@ -22,19 +22,19 @@ class iwh_fg_left: Fragment(){
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val vi = inflater?.inflate(R.layout.fg_left,container,false)
         val itemsV = arrayListOf<LinearLayout>()//存放itemsView
-        itemsV.add(vi!!.findViewById(R.id.left_list_item0))
-        itemsV.add(vi.findViewById(R.id.left_list_item1))
+
+        itemsV.add(vi!!.findViewById(R.id.left_list_item1))
         itemsV.add(vi.findViewById(R.id.left_list_item2))
         itemsV.add(vi.findViewById(R.id.left_list_item3))
         itemsV.add(vi.findViewById(R.id.left_list_item4))
         itemsV.add(vi.findViewById(R.id.left_list_item5))
         itemsV.add(vi.findViewById(R.id.left_list_item6))
-        itemsV.add(vi.findViewById(R.id.left_list_item7))
+
         //设置监听器
         for (i in itemsV.indices){
             itemsV[i].setOnClickListener{
 
-                Toast.makeText(activity,"${i}",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity,"${i}",Toast.LENGTH_SHORT).show()
                 val intent = Intent(activity,left_show::class.java)
                 intent.putExtra("key",i)
                 activity.startActivity(intent)

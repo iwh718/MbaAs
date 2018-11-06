@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fg_left = iwh_fg_left()
         val fg_center = iwh_fg_center()
         val fg_right = iwh_fg_right()
-
         list_fg.add(fg_left)
         list_fg.add(fg_center)
         list_fg.add(fg_right)

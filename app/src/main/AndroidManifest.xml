@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -24,7 +24,10 @@
         <activity android:name=".my.myTool" />
         <activity android:name=".other.otherSet" />
         <activity android:name=".other.otherAbout" />
-        <activity android:name=".left.left_show"></activity>
+        <activity android:name=".left.left_show"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

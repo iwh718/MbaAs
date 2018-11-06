@@ -1,8 +1,13 @@
 <resources>
 
     <style name="AppTheme.NoActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="actionBarTabTextStyle">@style/acbar</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
+    <style name="acbar">
+        <item name="android:textColor">#fff</item>
     </style>
 </resources>
