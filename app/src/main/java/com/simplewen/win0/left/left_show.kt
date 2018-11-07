@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AlertDialog
@@ -16,9 +17,7 @@ import android.view.ViewParent
 import android.widget.Toast
 import com.simplewen.win0.R
 import com.simplewen.win0.iwh_view_page_adapter
-import com.simplewen.win0.left.ch1.fg_ch_one
-import com.simplewen.win0.left.ch1.fg_ch_three
-import com.simplewen.win0.left.ch1.fg_ch_two
+import com.simplewen.win0.left.ch1.*
 
 class left_show : AppCompatActivity() {
 
@@ -80,7 +79,7 @@ class left_show : AppCompatActivity() {
               }
               4 -> {
                   for(i in 0 until n+1){
-                      var fg = fg_ch_two()
+                      var fg = fg_ch_four()
                       var args = Bundle()
                       args.putInt("ch_key",i)
                       fg.arguments = args
@@ -91,7 +90,7 @@ class left_show : AppCompatActivity() {
               }
               5 -> {
                   for(i in 0 until n+1){
-                      var fg = fg_ch_two()
+                      var fg = fg_ch_five()
                       var args = Bundle()
                       args.putInt("ch_key",i)
                       fg.arguments = args
@@ -101,7 +100,7 @@ class left_show : AppCompatActivity() {
                   tab.getTabAt(n)?.setText("案例")
               } 6 -> {
               for(i in 0 until n+1){
-                  var fg = fg_ch_two()
+                  var fg = fg_ch_six()
                   var args = Bundle()
                   args.putInt("ch_key",i)
                   fg.arguments = args
@@ -159,6 +158,9 @@ class left_show : AppCompatActivity() {
                 viewPage.adapter = vpgAdapter
             }
 
+        }
+        findViewById<FloatingActionButton>(R.id.fg_ch_fab).setOnClickListener{
+            Toast.makeText(this@left_show,"添加收藏？",Toast.LENGTH_SHORT).show()
         }
         viewPage.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
