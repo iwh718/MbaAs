@@ -160,7 +160,7 @@ class left_show : AppCompatActivity() {
 
         }
         findViewById<FloatingActionButton>(R.id.fg_ch_fab).setOnClickListener{
-            Toast.makeText(this@left_show,"添加收藏？",Toast.LENGTH_SHORT).show()
+            finish()
         }
         viewPage.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {

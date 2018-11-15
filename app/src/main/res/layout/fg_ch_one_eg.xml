@@ -5,11 +5,11 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="第一章案例"/>
+        android:layout_height="match_parent">
+       <WebView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/fg_ch_one_web_eg"></WebView>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

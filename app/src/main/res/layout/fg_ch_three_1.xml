@@ -3,8 +3,10 @@
     android:id="@+id/fg_ch_three_1"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <WebView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="第三章第一节"/>
+        android:layout_height="match_parent"
+        android:id="@+id/fg_ch_three_web_1">
+
+    </WebView>
 </android.support.constraint.ConstraintLayout>
