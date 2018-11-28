@@ -24,6 +24,7 @@ class fg_center_tm_fg:Fragment(){
 
         override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val ags = arguments
+            var fab_type = arguments.getString("fab_type")
 
             var vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
             vi?.findViewById<TextView>(R.id.tm_content)!!.text = ags.getString("tm_content") + "__"
@@ -38,22 +39,43 @@ class fg_center_tm_fg:Fragment(){
             Log.d("id",id)
             val right_answer = ags.getString("tm_answer")//正确答案
             val my_like_btn = vi.findViewById<FloatingActionButton>(R.id.my_like)//添加收藏按钮
-            my_like_btn.setOnClickListener{
-                val dia = AlertDialog.Builder(activity)
-                dia.setTitle("添加收藏?").setMessage("稍后可以在我的收藏页面查看该题目")
-                        .setPositiveButton("确认"){
-                            _,_ ->
-                            val temSql = mySql(activity,"glx",1)
-                            val db = temSql.writableDatabase
-                       val res =  temSql.wen_update(db,"like",id)
-                        if(res == 0){
-                            Toast.makeText(activity,"收藏失败:$id:res:$res",Toast.LENGTH_SHORT).show()
-                        }else{
-                            Toast.makeText(activity,"收藏完成",Toast.LENGTH_SHORT).show()
-                        }
+            if(fab_type == "add"){
+                my_like_btn.setOnClickListener{
+                    val dia = AlertDialog.Builder(activity)
+                    dia.setTitle("添加收藏?").setMessage("稍后可以在我的收藏页面查看该题目")
+                            .setPositiveButton("确认"){
+                                _,_ ->
+                                val temSql = mySql(activity,"glx",1)
+                                val db = temSql.writableDatabase
+                                val res =  temSql.wen_update(db,"like",id)
+                                if(res == 0){
+                                    Toast.makeText(activity,"收藏失败:$id:res:$res",Toast.LENGTH_SHORT).show()
+                                }else{
+                                    Toast.makeText(activity,"收藏完成",Toast.LENGTH_SHORT).show()
+                                }
 
-                        }.setNegativeButton("取消",null).create().show()
+                            }.setNegativeButton("取消",null).create().show()
+                }
+            }else if(fab_type == "delete"){
+                my_like_btn.setImageResource(R.drawable.my_delete)
+                my_like_btn.setOnClickListener{
+                    val dia = AlertDialog.Builder(activity)
+                    dia.setTitle("移除题目？?").setMessage("下次进入将会刷新")
+                            .setPositiveButton("确认"){
+                                _,_ ->
+                                val temSql = mySql(activity,"glx",1)
+                                val db = temSql.writableDatabase
+                                val res =  temSql.wen_update(db,"delete",id)
+                                if(res == 0){
+                                    Toast.makeText(activity,"移除失败:$id,res:$res",Toast.LENGTH_SHORT).show()
+                                }else{
+                                    Toast.makeText(activity,"移除完成",Toast.LENGTH_SHORT).show()
+                                }
+
+                            }.setNegativeButton("取消",null).create().show()
+                }
             }
+
             val tm_select_group = vi.findViewById<RadioGroup>(R.id.tm_select_group)//获取单选组
             val tm_answer_btn = vi.findViewById<Switch>(R.id.tm_answer_btn)//获取查看解析按钮
             val tm_answer_box = vi.findViewById<LinearLayout>(R.id.tm_answer_box)//解析区

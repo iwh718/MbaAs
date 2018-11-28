@@ -48,7 +48,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
         var selection:String = ""
         when(sort_type){
             "all" -> {
-
+                selection = "id = 1"
             }
             "error" -> {
                 selection = "my_sort = 'error'"
@@ -135,4 +135,5 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
         val re =   db.update("tm_dx",content,"id = ?", arrayOf(tm_id))
         return re
     }
+
 }

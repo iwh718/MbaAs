@@ -49,13 +49,14 @@ class iwh_fg_center: Fragment(){
             }
         }
 
-        temSql.wen_query(db,handle,"sj","all")
+        temSql.wen_query(db,handle,"sj","")
         listView?.onItemClickListener = AdapterView.OnItemClickListener {
             _,_,position,_->
            // Toast.makeText(activity,"你点击是：$position",Toast.LENGTH_SHORT).show()
             Log.d("position:",sjs.get(position).get("id").toString())
             val intent = Intent(activity,fg_center_tm::class.java)
             intent.putExtra("sj_id",position+1)
+            intent.putExtra("fab_type","add")
             startActivity(intent)
 
         }

@@ -32,6 +32,7 @@ class fg_center_tm : AppCompatActivity() {
         //list_fg.add(fg_center_tm_fg())
 
         val sj_id = intent.getStringExtra("sj_id")
+        val fab_type = intent.getStringExtra("fab_type")
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm)
         var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
         iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
@@ -61,6 +62,8 @@ class fg_center_tm : AppCompatActivity() {
                             arguments.putString("tm_d",content["D"].toString())
                             arguments.putString("tm_id",content["id"].toString())
                             arguments.putString("sj_id",content["sj_d"].toString())
+                            arguments.putString("fab_type",fab_type)//fab类型，用来删除还是移除收藏
+
 
 
                             fg.arguments = arguments
@@ -79,7 +82,7 @@ class fg_center_tm : AppCompatActivity() {
                 }
             }
         }
-       temSql.wen_query(db,handle,"tm_dx","all")//查询题目
+       temSql.wen_query(db,handle,"tm_dx","")//查询题目
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

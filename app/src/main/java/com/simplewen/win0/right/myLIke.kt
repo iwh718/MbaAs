@@ -63,6 +63,7 @@ class myLIke : AppCompatActivity() {
                             arguments.putString("tm_d",content["D"].toString())
                             arguments.putString("tm_id",content["id"].toString())
                             arguments.putString("sj_id",content["sj_d"].toString())
+                            arguments.putString("fab_type","delete")//设置fab删除功能
 
 
                             fg.arguments = arguments
