@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_bug"
-        android:title="反馈bug"/>
+        android:id="@+id/action_about"
+        android:title="关于"/>
+    <item
+        android:id="@+id/action_unlock"
+        android:title="解锁"/>
     <item
         android:id="@+id/action_share"
         android:title="分享"

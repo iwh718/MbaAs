@@ -1,14 +1,15 @@
 package com.simplewen.win0
 
 
-import android.app.ActionBar
+import android.app.Activity
 import android.app.AlertDialog
-import android.app.FragmentTransaction
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -19,19 +20,43 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Adapter
-import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.fgs.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import org.w3c.dom.Text
+import java.io.File
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(){
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val temSql = mySql(this@MainActivity,"glx",1)//创建数据
+        temSql.writableDatabase
+        val hand: Handler = object : Handler(Looper.getMainLooper()) {
+            override fun handleMessage(msg: Message?) {
+                super.handleMessage(msg)
+                when (msg?.what) {
+                    0 -> {
+                        Toast.makeText(this@MainActivity, "复制成功", Toast.LENGTH_SHORT).show()
+
+                    }
+                    1 -> {
+                        Toast.makeText(this@MainActivity, "复制失败", Toast.LENGTH_SHORT).show()
+                    }
+                    2 -> {
+                        Toast.makeText(this@MainActivity, "数据库存在", Toast.LENGTH_SHORT).show()
+                    }
+                    3 -> {
+                        Toast.makeText(this@MainActivity, "数据库不存在", Toast.LENGTH_SHORT).show()
+                    }
+                    4 -> {
+                        Toast.makeText(this@MainActivity, "查询完成", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
+
+        }
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         iwh_tab.setTabTextColors(Color.WHITE,Color.WHITE)
         iwh_tab.addTab(iwh_tab.newTab().setText("知识体系"))
         iwh_tab.addTab(iwh_tab.newTab().setText("习题册"))
-        iwh_tab.addTab(iwh_tab.newTab().setText("知识导图"))
+        iwh_tab.addTab(iwh_tab.newTab().setText("我的"))
         //iwh_tab.setupWithViewPager(iwh_viewPage)//将viewpage与tablayout绑定一起
         iwh_tab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -72,6 +97,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
 
 
+        val file = File(ImportDB.DB_PATH + "/glx")//调用伴生对象
+        Log.d("here",ImportDB.DB_PATH)
+        val share = getSharedPreferences("dbFlag", Activity.MODE_PRIVATE)
+
+        if (file.exists()){
+            //内部数据库存在，开始导入外部
+           // Toast.makeText(this@MainActivity, "存在内部数据库", Toast.LENGTH_SHORT).show()
+            if(share.getString("dbFlag","0") == "1"){
+              //  Toast.makeText(this@MainActivity, "已经导入过数据库", Toast.LENGTH_SHORT).show()
+                 }else{
+                val inDb = ImportDB(this@MainActivity)
+                if(inDb.copyDatabase()){
+                   // Toast.makeText(this@MainActivity, "复制完成", Toast.LENGTH_SHORT).show()
+                    val shareP = getSharedPreferences("dbFlag", Activity.MODE_PRIVATE)
+                    val edit = shareP.edit()
+                    edit.putString("dbFlag","1")//导入完成，设置标志
+                    edit.apply()
+                }else{
+                    Toast.makeText(this@MainActivity, "复制失败", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+        }
 
         fab.setOnClickListener { _ ->
            val dia = AlertDialog.Builder(this@MainActivity)
@@ -84,74 +133,59 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     }
                     .setNegativeButton("不了"){
                         _,_ ->
-                        Toast.makeText(this@MainActivity,"好吧",Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(this@MainActivity,"好吧",Toast.LENGTH_SHORT).show()
                     }
                     .create().show()
 
         }
 
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
-
-
-
-
     }
 
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
+
             val intent = Intent()
             intent.action = Intent.ACTION_MAIN
             intent.addCategory(Intent.CATEGORY_HOME)
             startActivity(intent)
-        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         when (item.itemId) {
-            R.id.action_share -> return true
-            else -> return super.onOptionsItemSelected(item)
+            R.id.action_share ->
+            {
+                Toast.makeText(this@MainActivity,"分享给小伙伴",Toast.LENGTH_SHORT).show()
+            }
+            R.id.action_about -> {
+                val ab = layoutInflater.inflate(R.layout.about,null)
+                val about_dia = AlertDialog.Builder(this@MainActivity)
+                about_dia.setView(ab).create().show()
+            }
+            R.id.action_unlock -> {
+                val about_dia = AlertDialog.Builder(this@MainActivity)
+                about_dia.setTitle("付费解锁收藏与错题功能").setMessage("这些资料都是一点点输入进去的，你的帮助，将会是对我最大的认可")
+                        .setPositiveButton("确认"){
+                            _,_ ->
+
+
+                        }.setNegativeButton("取消"){
+                            _,_ ->
+                        }.create().show()
+            }
+
+
+
         }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_manage -> {
-                // Handle the camera action
-            }
-            R.id.nav_iwh_like -> {
-
-            }
-            R.id.nav_iwh_error -> {
-
-            }
-
-            R.id.nav_iwh_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
 
 }

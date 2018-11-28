@@ -2,9 +2,14 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fg_right_web"></WebView>
 
+    <ListView
+        android:dividerHeight="0dp"
+        android:divider="#FFCC00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fg_center_listview">
+
+
+    </ListView>
 </android.support.constraint.ConstraintLayout>

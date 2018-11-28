@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
 
+
 class fg_ch_one :Fragment(){
 
 

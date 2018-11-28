@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="管理学助手"/>
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="简介：周三多主编的第三版管理学为基础的知识体系，配上专项练习和试卷。解锁版提供收藏功能，非解锁版，提供全部题目练习与全部知识点查看。"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="反馈QQ群：xxx"/>
+        <TextView
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="版本：v1.0"/>
+    </LinearLayout>
+    <TextView
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="作者：IWH "/>
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="努力不够的话，就加倍努力。2018.11.27"/>
+    <TextView
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="本应用开源代码：GItHub：xxx"/>
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="仅以此应用送给管理学,学科的同学，希望能给你们带来一点帮助，应用资料与数据，将会定期更新，免费版不会影响做题，全部题目免费提供。"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/banner2"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true" />
+
+
+</LinearLayout>

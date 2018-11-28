@@ -72,8 +72,8 @@ class fg_ch_three :Fragment(){
                 webLoad(web,url_ch_three[2])
             }
             3 -> {
-                vi = inflater.inflate(R.layout.fg_ch_three_1,container,false)
-                val web = vi.findViewById<WebView>(R.id.fg_ch_three_web_1)
+                vi = inflater.inflate(R.layout.fg_ch_three_eg,container,false)
+                val web = vi.findViewById<WebView>(R.id.fg_ch_three_web_eg)
                 webLoad(web,url_ch_three[1])
             }
 

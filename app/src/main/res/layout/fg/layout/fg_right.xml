@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+      <android.support.v7.widget.CardView
+          app:cardCornerRadius="10dp"
+         android:elevation="10dp"
+          android:layout_margin="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <ImageView
+              android:adjustViewBounds="true"
+              android:backgroundTintMode="src_over"
+              android:src="@drawable/banner1"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
+      </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        android:layout_margin="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:textColor="#3ca63e"
+                android:textSize="20dp"
+                android:text="距离专升本/考研还有200天"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:textSize="12dp"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="没有什么是一蹴而就的。"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+   <android.support.v7.widget.CardView
+       app:cardCornerRadius="10dp"
+       android:elevation="10dp"
+
+       android:layout_margin="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <TextView
+
+               android:textAlignment="center"
+               android:layout_margin="10dp"
+               android:id="@+id/fg_right_my_error"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="我的错题"/>
+           <TextView
+               android:id="@+id/fg_right_my_like"
+               android:textAlignment="center"
+               android:layout_margin="10dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="我的收藏"/>
+       </LinearLayout>
+
+
+   </android.support.v7.widget.CardView>
+
+
+
+
+</LinearLayout>

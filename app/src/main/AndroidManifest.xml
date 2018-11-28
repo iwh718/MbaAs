@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simplewen.win0">
-<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/glx"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/glx"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
@@ -19,15 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".my.myLike" />
-        <activity android:name=".my.myError" />
-        <activity android:name=".my.myTool" />
-        <activity android:name=".other.otherSet" />
-        <activity android:name=".other.otherAbout" />
-        <activity android:name=".left.left_show"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".my.myLike"
+            android:label="我的收藏" />
+        <activity
+            android:name=".my.myError"
+            android:label="我的错题" />
+        <activity
+            android:name=".left.left_show"
+            android:label="题目练习"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".fg_center_tm"></activity>
+        <activity android:name=".right.myLIke"></activity>
     </application>
 
 </manifest>
