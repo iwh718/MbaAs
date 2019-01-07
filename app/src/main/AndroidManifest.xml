@@ -3,10 +3,9 @@
     package="com.simplewen.win0">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/glx"
         android:label="@string/app_name"
@@ -18,23 +17,28 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".left.left_show"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".center.mian_tm"
+            android:label="题目练习" />
+        <activity android:name=".right.myLIke" />
+        <activity
+            android:name=".login"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".my.myLike"
-            android:label="我的收藏" />
-        <activity
-            android:name=".my.myError"
-            android:label="我的错题" />
-        <activity
-            android:name=".left.left_show"
-            android:label="题目练习"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".fg_center_tm"></activity>
-        <activity android:name=".right.myLIke"></activity>
     </application>
 
 </manifest>

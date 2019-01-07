@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/fg_ch_six_2"
+    android:id="@+id/fg_ch_four_1"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="第六章第2节"/>
+        android:id="@+id/fg_ch_six_web_2">
+
+    </WebView>
 </android.support.constraint.ConstraintLayout>

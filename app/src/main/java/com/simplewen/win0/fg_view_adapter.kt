@@ -3,8 +3,13 @@ import kotlin.collections.arrayListOf
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.PagerAdapter
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 
-class iwh_view_page_adapter(fm:FragmentManager,fg_list:ArrayList<Fragment>):FragmentPagerAdapter(fm){
+class iwh_view_page_adapter(fm:FragmentManager,fg_list:ArrayList<Fragment>): FragmentStatePagerAdapter(fm){
     private var listFg = arrayListOf<Fragment>()
     init {
         listFg = fg_list
@@ -15,4 +20,17 @@ class iwh_view_page_adapter(fm:FragmentManager,fg_list:ArrayList<Fragment>):Frag
     override fun getItem(position: Int): Fragment {
         return listFg[position]
     }
+
+
+
+    override fun getItemPosition(`object`: Any?): Int {
+            return PagerAdapter.POSITION_NONE
+    }
+
+    override  fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
+        super.destroyItem(container, position, `object`)
+
+    }
+
+
 }

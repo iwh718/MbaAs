@@ -32,19 +32,46 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:layout_width="0dp"
+                    android:padding="10dp"
+                    android:textColor="#3ca63e"
+                    android:textSize="20sp"
+
+                    android:text="距离"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:textColor="#3ca63e"
+                    android:textSize="25sp"
+                    android:layout_weight="2"
+                    android:text="专升本"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fg_right_time_calendar_btn"/>
+
+            </LinearLayout>
             <TextView
                 android:textAlignment="center"
-                android:layout_width="match_parent"
                 android:padding="10dp"
-                android:textColor="#3ca63e"
-                android:textSize="20dp"
-                android:text="距离专升本/考研还有200天"
+                android:layout_width="match_parent"
+                android:text="25天"
+                android:textSize="30sp"
+                android:textColor="#fa526b"
                 android:layout_height="wrap_content"
-                />
+                android:id="@+id/djs_time"/>
+
             <TextView
                 android:textSize="12dp"
                 android:textAlignment="center"
                 android:padding="10dp"
+                android:id="@+id/fg_right_quote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="没有什么是一蹴而就的。"/>

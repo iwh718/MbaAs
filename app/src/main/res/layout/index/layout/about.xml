@@ -15,7 +15,7 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="简介：周三多主编的第三版管理学为基础的知识体系，配上专项练习和试卷。解锁版提供收藏功能，非解锁版，提供全部题目练习与全部知识点查看。"/>
+        android:text="简介：测试版本会出现点击无效，均为未开发，点击闪退未为程序缺陷，其它正在测试。"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="版本：v1.0"/>
+            android:text="测试版本：v1.0"/>
     </LinearLayout>
     <TextView
         android:textAlignment="center"
@@ -53,12 +53,12 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="本应用开源代码：GItHub：xxx"/>
+        android:text="本应用开源代码：GitHub：xxx"/>
     <TextView
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="仅以此应用送给管理学,学科的同学，希望能给你们带来一点帮助，应用资料与数据，将会定期更新，免费版不会影响做题，全部题目免费提供。"/>
+        android:text="希望能给你们带来一点帮助。"/>
     <ImageView
         android:layout_width="match_parent"
         android:src="@drawable/banner2"

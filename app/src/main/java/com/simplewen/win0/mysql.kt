@@ -134,6 +134,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
         content.put("my_sort",my_type)
         val re =   db.update("tm_dx",content,"id = ?", arrayOf(tm_id))
         return re
+
     }
 
 }

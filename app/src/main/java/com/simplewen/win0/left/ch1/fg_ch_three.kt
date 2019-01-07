@@ -17,7 +17,7 @@ class fg_ch_three :Fragment(){
             "https://www.borebooks.top/MAS/MAS_three/MAS_ch_three_1.htm",
             "https://www.borebooks.top/MAS/MAS_three/MAS_ch_three_2.htm",
             "https://www.borebooks.top/MAS/MAS_three/MAS_ch_three_3.htm",
-            "https://www.borebooks.top/MAS/MAS_three/MAS_ch_two_eg.htm")
+            "https://www.borebooks.top/MAS/MAS_three/MAS_ch_three_eg.htm")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val key = arguments.getInt("ch_key")
         var dia2: AlertDialog? =null
@@ -74,7 +74,7 @@ class fg_ch_three :Fragment(){
             3 -> {
                 vi = inflater.inflate(R.layout.fg_ch_three_eg,container,false)
                 val web = vi.findViewById<WebView>(R.id.fg_ch_three_web_eg)
-                webLoad(web,url_ch_three[1])
+                webLoad(web,url_ch_three[3])
             }
 
         }

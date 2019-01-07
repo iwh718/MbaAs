@@ -9,6 +9,7 @@ import android.os.Message
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
 import com.simplewen.win0.center.fg_center_tm_fg
@@ -18,31 +19,34 @@ import com.simplewen.win0.mySql
 import kotlinx.android.synthetic.main.activity_my_like.*
 
 
-class myLIke : AppCompatActivity() {
+class myLIke : AppCompatActivity(),fg_center_tm_fg.Callbacks {
 
+    var handle:Handler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_like)
         setSupportActionBar(toolbar)
        toolbar.setTitleTextColor(Color.WHITE)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        val list_fg = arrayListOf<Fragment>()
-
-        val my_flag = intent.getStringExtra("my_flag")
-        //Toast.makeText(this@myLIke,my_flag,Toast.LENGTH_SHORT).show()
-        val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm_like)
-        var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
-        iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
-
-        val temSql = mySql(this@myLIke,"glx",1)
-        val db = temSql.writableDatabase
+        var temSql = mySql(this@myLIke,"glx",1)
+        var db = temSql.writableDatabase
         var sjs = temSql.sjs//存放题目数据集合
-        val handle = object : Handler(Looper.getMainLooper()){
+        val list_fg = arrayListOf<Fragment>()
+        var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
+        val title = findViewById<TextView>(R.id.toobar_tm_title)
+        val my_flag = intent.getStringExtra("my_flag")
+        if(my_flag == "like"){
+            title.text = "我的收藏"
+        }else{
+            title.text = "我的错题"
+        }
+        //重写handle
+        handle = object : Handler(Looper.getMainLooper()){
             override fun handleMessage(msg: Message?) {
 
                 when(msg!!.what){
                     0 -> {
+                      //  Toast.makeText(this@myLIke,"回调方法执行ok",Toast.LENGTH_SHORT).show()
                         //Toast.makeText(this@myLIke,"题目查询完成\n${temSql.sjs}",Toast.LENGTH_LONG).show()
                         sjs = temSql.sjs
                         if(sjs.size == 0){
@@ -64,7 +68,7 @@ class myLIke : AppCompatActivity() {
                             arguments.putString("tm_id",content["id"].toString())
                             arguments.putString("sj_id",content["sj_d"].toString())
                             arguments.putString("fab_type","delete")//设置fab删除功能
-
+                            arguments.putInt("position",i)//FG下标
 
                             fg.arguments = arguments
 
@@ -76,13 +80,40 @@ class myLIke : AppCompatActivity() {
 
 
                     }
-                    1 -> {
+                    1->{
 
+                        list_fg.removeAt(msg.arg1)
+                        Log.d("msg:",msg.arg1.toString())
+                        iwh_view_page_adapter.notifyDataSetChanged()
                     }
+
                 }
             }
         }
-        temSql.wen_query(db,handle,"tm_dx",my_flag)//查询题目
+
+
+
+
+        //Toast.makeText(this@myLIke,my_flag,Toast.LENGTH_SHORT).show()
+        val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm_like)
+
+        iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
+
+
+
+        temSql.wen_query(db,handle!!,"tm_dx",my_flag)//查询题目
+
     }
+    //实现回调方法
+    override fun onRemove(position:Int) {
+
+        val msg  = Message()
+        msg.what = 1
+        msg.arg1 = position
+        handle?.sendMessage(msg)
+        Log.d("callback:",msg.what.toString())
+
+    }
+
 
 }

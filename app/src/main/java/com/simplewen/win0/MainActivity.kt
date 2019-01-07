@@ -3,26 +3,23 @@ package com.simplewen.win0
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager
-import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.simplewen.win0.fgs.*
-import kotlinx.android.synthetic.main.activity_main.*
+import com.simplewen.win0.center.iwh_fg_center
+import com.simplewen.win0.left.iwh_fg_left
+import com.simplewen.win0.right.iwh_fg_right
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
 
@@ -168,17 +165,7 @@ class MainActivity : AppCompatActivity(){
                 val about_dia = AlertDialog.Builder(this@MainActivity)
                 about_dia.setView(ab).create().show()
             }
-            R.id.action_unlock -> {
-                val about_dia = AlertDialog.Builder(this@MainActivity)
-                about_dia.setTitle("付费解锁收藏与错题功能").setMessage("这些资料都是一点点输入进去的，你的帮助，将会是对我最大的认可")
-                        .setPositiveButton("确认"){
-                            _,_ ->
 
-
-                        }.setNegativeButton("取消"){
-                            _,_ ->
-                        }.create().show()
-            }
 
 
 

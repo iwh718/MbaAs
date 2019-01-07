@@ -13,7 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        >
+        <TextView
+            android:textColor="#fff"
+            android:id="@+id/toobar_tm_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="测试"/>
+    </android.support.v7.widget.Toolbar>
     <android.support.v4.view.ViewPager
         android:layout_marginTop="2dp"
         android:layout_width="match_parent"

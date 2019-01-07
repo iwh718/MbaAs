@@ -1,5 +1,6 @@
 package com.simplewen.win0.center
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,17 +16,26 @@ import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
 import com.simplewen.win0.mySql
+import com.simplewen.win0.right.myLIke
 import org.w3c.dom.Text
+import java.lang.IllegalStateException
 
 
 class fg_center_tm_fg:Fragment(){
+    interface Callbacks{
 
+        fun onRemove(position:Int){
 
+        }
+    }
+        private  var mcallbacks:Callbacks?= null//回调
 
         override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val ags = arguments
+            val position = arguments.getInt("position")//获取FG下标
             var fab_type = arguments.getString("fab_type")
-
+            val temSql = mySql(activity,"glx",1)//初始化数据库链接
+            val db = temSql.writableDatabase//获取读写对象
             var vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
             vi?.findViewById<TextView>(R.id.tm_content)!!.text = ags.getString("tm_content") + "__"
             vi.findViewById<TextView>(R.id.tm_answer_right).text = "正确答案：" +  ags.getString("tm_answer")
@@ -45,13 +55,15 @@ class fg_center_tm_fg:Fragment(){
                     dia.setTitle("添加收藏?").setMessage("稍后可以在我的收藏页面查看该题目")
                             .setPositiveButton("确认"){
                                 _,_ ->
-                                val temSql = mySql(activity,"glx",1)
-                                val db = temSql.writableDatabase
+
                                 val res =  temSql.wen_update(db,"like",id)
                                 if(res == 0){
                                     Toast.makeText(activity,"收藏失败:$id:res:$res",Toast.LENGTH_SHORT).show()
                                 }else{
                                     Toast.makeText(activity,"收藏完成",Toast.LENGTH_SHORT).show()
+
+
+
                                 }
 
                             }.setNegativeButton("取消",null).create().show()
@@ -59,20 +71,15 @@ class fg_center_tm_fg:Fragment(){
             }else if(fab_type == "delete"){
                 my_like_btn.setImageResource(R.drawable.my_delete)
                 my_like_btn.setOnClickListener{
-                    val dia = AlertDialog.Builder(activity)
-                    dia.setTitle("移除题目？?").setMessage("下次进入将会刷新")
-                            .setPositiveButton("确认"){
-                                _,_ ->
-                                val temSql = mySql(activity,"glx",1)
-                                val db = temSql.writableDatabase
-                                val res =  temSql.wen_update(db,"delete",id)
-                                if(res == 0){
-                                    Toast.makeText(activity,"移除失败:$id,res:$res",Toast.LENGTH_SHORT).show()
-                                }else{
-                                    Toast.makeText(activity,"移除完成",Toast.LENGTH_SHORT).show()
-                                }
-
-                            }.setNegativeButton("取消",null).create().show()
+                    val temSql = mySql(activity,"glx",1)
+                    val db = temSql.writableDatabase
+                    val res =  temSql.wen_update(db,"delete",id)
+                    if(res == 0){
+                        Toast.makeText(activity,"移除失败:$id,res:$res",Toast.LENGTH_SHORT).show()
+                    }else{
+                         Toast.makeText(activity,"移除完成",Toast.LENGTH_SHORT).show()
+                        mcallbacks!!.onRemove(position)
+                    }
                 }
             }
 
@@ -91,6 +98,23 @@ class fg_center_tm_fg:Fragment(){
                     tm_answer_box.visibility = View.GONE
                 }
             }
+            fun my_error():Boolean{
+                //自动保存错题到数据库
+
+                val res =  temSql.wen_update(db,"error",id)
+                if(res ==0 ){
+                    Toast.makeText(activity,"自动添加失败",Toast.LENGTH_SHORT).show()
+                    return false
+                }else{
+                    Toast.makeText(activity,"自动添加成功",Toast.LENGTH_SHORT).show()
+
+
+
+                    return true
+                }
+
+
+            }
             tm_select_group.setOnCheckedChangeListener{
               _,checkedId ->
                 when(checkedId){
@@ -100,6 +124,7 @@ class fg_center_tm_fg:Fragment(){
                             Tos("回答正确")
                         }else{
                             Tos("回答错误哦")
+                            my_error()//错题添加数据库
                         }
                     }
                     R.id.tm_b ->{
@@ -107,6 +132,7 @@ class fg_center_tm_fg:Fragment(){
                             Tos("回答正确")
                         }else{
                             Tos("回答错误哦")
+                            my_error()//错题添加数据库
                         }
                     }
                     R.id.tm_c -> {
@@ -114,6 +140,7 @@ class fg_center_tm_fg:Fragment(){
                             Tos("回答正确")
                         }else{
                             Tos("回答错误哦")
+                            my_error()//错题添加数据库
                         }
                     }
                     R.id.tm_d -> {
@@ -121,6 +148,7 @@ class fg_center_tm_fg:Fragment(){
                             Tos("回答正确")
                         }else{
                             Tos("回答错误哦")
+                            my_error()//错题添加数据库
                         }
                     }
 
@@ -137,4 +165,18 @@ class fg_center_tm_fg:Fragment(){
 
             return vi
         }
+
+    override fun onAttach(context: Context?) {
+        if(context !is Callbacks){
+            throw IllegalStateException("接口未实现")
+        }
+        super.onAttach(context)
+        mcallbacks = context
+
+    }
+
+
+
+
+
     }
