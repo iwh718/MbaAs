@@ -15,8 +15,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
-import org.w3c.dom.Text
 import java.lang.Exception
 import java.util.*
 import java.text.SimpleDateFormat
@@ -42,7 +40,7 @@ class iwh_fg_right: Fragment(){
             djs_things.text = "$default_things 还有"//默认事件
             djs_time.text = default_time//默认时间
 
-        iwhToast(activity,"测试").show()
+        iwhToast("测试11111111111")
 
 
         val myError = vi.findViewById<TextView>(R.id.fg_right_my_error)
