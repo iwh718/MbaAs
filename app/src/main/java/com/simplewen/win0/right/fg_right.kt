@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,7 @@ class iwh_fg_right: Fragment(){
             djs_things.text = "$default_things 还有"//默认事件
             djs_time.text = default_time//默认时间
 
-        iwhToast("测试11111111111")
+
 
 
         val myError = vi.findViewById<TextView>(R.id.fg_right_my_error)
@@ -71,7 +72,7 @@ class iwh_fg_right: Fragment(){
                            Toast.makeText(activity,quo,Toast.LENGTH_SHORT).show()
                            quote_btn.text = quo
                        }else{
-                           Toast.makeText(activity,"不可以为空哦",Toast.LENGTH_SHORT).show()
+                           iwhToast("不可以为空哦！", Gravity.BOTTOM)
                        }
 
                     }
@@ -127,10 +128,10 @@ class iwh_fg_right: Fragment(){
                             djs_time.text =  "还有 $fuTime 天"//立即更新时间
                             }catch (e:Exception){
                                 println(e.printStackTrace())
-                                Toast.makeText(activity,"程序出问题了",Toast.LENGTH_SHORT).show()
+                                iwhToast("程序出现问题！", Gravity.BOTTOM)
                             }
                         }else{
-                            Toast.makeText(activity,"不可以为空哦",Toast.LENGTH_SHORT).show()
+                            iwhToast("不可以为空哦！", Gravity.BOTTOM)
                         }
 
                     }.setNegativeButton("取消",null)

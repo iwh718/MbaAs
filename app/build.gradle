@@ -22,11 +22,6 @@ android {
             res.srcDirs =
                     [
                             'src/main/res/layout/chs/ch_one',
-                            'src/main/res/layout/chs/ch_two',
-                            'src/main/res/layout/chs/ch_three',
-                            'src/main/res/layout/chs/ch_four',
-                            'src/main/res/layout/chs/ch_five',
-                            'src/main/res/layout/chs/ch_six',
                             'src/main/res/layout/chs',
                             'src/main/res/layout/index',
                             'src/main/res/layout/fg',

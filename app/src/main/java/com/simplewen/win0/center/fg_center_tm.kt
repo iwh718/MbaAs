@@ -10,17 +10,22 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
 import com.simplewen.win0.mySql
+import com.simplewen.win0.right.iwhToast
 import com.simplewen.win0.right.myLIke
 import org.w3c.dom.Text
 import java.lang.IllegalStateException
 
-
+/**实现题目的Fragment
+ * author：iwh
+ * time：2018.10
+ * 实现题目的显示，错题自动保存，添加收藏，错题集的显示与收藏显示**/
 class fg_center_tm_fg:Fragment(){
     interface Callbacks{
 
@@ -41,7 +46,7 @@ class fg_center_tm_fg:Fragment(){
             vi.findViewById<TextView>(R.id.tm_answer_right).text = "正确答案：" +  ags.getString("tm_answer")
             Log.d("answer_desc",ags.getString("tm_answer_desc"))
             vi.findViewById<TextView>(R.id.tm_answer_desc).text = "解析:" +  ags.getString("tm_answer_desc")
-            vi.findViewById<RadioButton>(R.id.tm_a).text = "A:" + ags.getString("tm_a")
+            vi.findViewById<RadioButton>(R.id.tm_a).text = "A:${ags.getString("tm_a")}"
             vi.findViewById<RadioButton>(R.id.tm_b).text = "B:" +  ags.getString("tm_b")
             vi.findViewById<RadioButton>(R.id.tm_c).text = "C:" +  ags.getString("tm_c")
             vi.findViewById<RadioButton>(R.id.tm_d).text = "D:" +  ags.getString("tm_d")
@@ -61,8 +66,6 @@ class fg_center_tm_fg:Fragment(){
                                     Toast.makeText(activity,"收藏失败:$id:res:$res",Toast.LENGTH_SHORT).show()
                                 }else{
                                     Toast.makeText(activity,"收藏完成",Toast.LENGTH_SHORT).show()
-
-
 
                                 }
 
@@ -100,68 +103,51 @@ class fg_center_tm_fg:Fragment(){
             }
             fun my_error():Boolean{
                 //自动保存错题到数据库
-
+                iwhToast("回答错误！",Gravity.BOTTOM,R.color.warn)
                 val res =  temSql.wen_update(db,"error",id)
                 if(res ==0 ){
-                    Toast.makeText(activity,"自动添加失败",Toast.LENGTH_SHORT).show()
+                   iwhToast("添加失败！",Gravity.BOTTOM,R.color.warn)
                     return false
-                }else{
-                    Toast.makeText(activity,"自动添加成功",Toast.LENGTH_SHORT).show()
-
-
-
-                    return true
                 }
-
+                return true
 
             }
             tm_select_group.setOnCheckedChangeListener{
               _,checkedId ->
+                var tmFlag = false
                 when(checkedId){
                     R.id.tm_a -> {
 
-                        if(right_answer == "A"){
-                            Tos("回答正确")
-                        }else{
-                            Tos("回答错误哦")
-                            my_error()//错题添加数据库
+                        if(right_answer != "A"){
+                            tmFlag = true
                         }
                     }
                     R.id.tm_b ->{
-                        if(right_answer == "B"){
-                            Tos("回答正确")
-                        }else{
-                            Tos("回答错误哦")
-                            my_error()//错题添加数据库
+                        if(right_answer != "C"){
+                            tmFlag = true
                         }
                     }
                     R.id.tm_c -> {
-                        if(right_answer == "C"){
-                            Tos("回答正确")
-                        }else{
-                            Tos("回答错误哦")
-                            my_error()//错题添加数据库
+                        if(right_answer != "C"){
+                            tmFlag = true
                         }
                     }
                     R.id.tm_d -> {
-                        if(right_answer == "D"){
-                            Tos("回答正确")
-                        }else{
-                            Tos("回答错误哦")
-                            my_error()//错题添加数据库
+                        if(right_answer != "D"){
+                            tmFlag = true
                         }
                     }
 
                 }
+                if(tmFlag){
+                    my_error()//错题添加数据库
+                } else{
+                   iwhToast("回答正确！",Gravity.BOTTOM)
+                }
+                tm_answer_btn.isChecked = true
                 tm_answer_box.visibility = View.VISIBLE
 
             }
-
-
-
-
-
-
 
             return vi
         }

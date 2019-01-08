@@ -30,8 +30,6 @@ class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val list_fg = arrayListOf<Fragment>()
-        //list_fg.add(fg_center_tm_fg())
-
         val sj_id = intent.getStringExtra("sj_id")
         val fab_type = intent.getStringExtra("fab_type")
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm)
@@ -88,7 +86,7 @@ class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val menu = menuInflater.inflate(R.menu.menu_tool,menu)
+        menuInflater.inflate(R.menu.menu_tool,menu)
         return true
     }
 

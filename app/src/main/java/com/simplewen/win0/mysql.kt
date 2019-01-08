@@ -42,6 +42,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
 
     /*查询方法*/
     fun wen_query( db: SQLiteDatabase, hand: Handler,table_name:String,sort_type:String): Boolean {
+        this.sjs.clear()
         var tableName:String = table_name//获取查询的表
         val sort_type = sort_type//查询类型：全部，错题，收藏。
         var colums  = null

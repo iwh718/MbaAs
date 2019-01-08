@@ -2,7 +2,6 @@ package com.simplewen.win0.center
 
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,11 +15,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
-import android.widget.Toast
 import com.simplewen.win0.R
 import com.simplewen.win0.R.color.colorPrimaryDark
 import com.simplewen.win0.mySql
-import java.util.*
 
 class iwh_fg_center: Fragment(){
 
@@ -58,7 +55,6 @@ class iwh_fg_center: Fragment(){
         temSql.wen_query(db,handle,"sj","")
         listView?.onItemClickListener = AdapterView.OnItemClickListener {
             _,_,position,_->
-           // Toast.makeText(activity,"你点击是：$position",Toast.LENGTH_SHORT).show()
             Log.d("position:",sjs.get(position).get("id").toString())
             val intent = Intent(activity, mian_tm::class.java)
             intent.putExtra("sj_id",position+1)

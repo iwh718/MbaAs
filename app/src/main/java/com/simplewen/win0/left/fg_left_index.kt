@@ -11,11 +11,7 @@ import android.widget.*
 import com.simplewen.win0.R
 
 class iwh_fg_left: Fragment(){
-    override fun onCreate(savedInstanceState: Bundle?) {
 
-
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val vi = inflater?.inflate(R.layout.fg_left,container,false)
         val itemsV = arrayListOf<LinearLayout>()//存放itemsView

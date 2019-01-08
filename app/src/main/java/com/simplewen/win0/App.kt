@@ -5,16 +5,19 @@ import android.app.Application
 import android.content.Context
 
 class App :Application(){
-    lateinit var iwhContxt:Context
+
+    companion object {
+        var  _context:Application? = null
+        fun getContext():Context{
+            return _context!!
+        }
+
+
+    }
 
     override fun onCreate() {
         super.onCreate()
-        iwhContxt = applicationContext
+        _context = this
     }
-    fun getContext():Context{
-        return this.iwhContxt
-    }
-    fun getActivity(): Activity {
-        return Activity()
-    }
+
 }

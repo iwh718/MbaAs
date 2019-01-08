@@ -14,11 +14,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.simplewen.win0.center.iwh_fg_center
 import com.simplewen.win0.left.iwh_fg_left
+import com.simplewen.win0.right.iwhToast
 import com.simplewen.win0.right.iwh_fg_right
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
@@ -34,20 +36,20 @@ class MainActivity : AppCompatActivity(){
                 super.handleMessage(msg)
                 when (msg?.what) {
                     0 -> {
-                        Toast.makeText(this@MainActivity, "复制成功", Toast.LENGTH_SHORT).show()
+                        iwhToast("复制成功！", Gravity.BOTTOM)
 
                     }
                     1 -> {
-                        Toast.makeText(this@MainActivity, "复制失败", Toast.LENGTH_SHORT).show()
+                        iwhToast("复制失败！", Gravity.BOTTOM)
                     }
                     2 -> {
-                        Toast.makeText(this@MainActivity, "数据库存在", Toast.LENGTH_SHORT).show()
+                        iwhToast("数据库存在", Gravity.BOTTOM)
                     }
                     3 -> {
-                        Toast.makeText(this@MainActivity, "数据库不存在", Toast.LENGTH_SHORT).show()
+                        iwhToast("数据库不存在！", Gravity.BOTTOM)
                     }
                     4 -> {
-                        Toast.makeText(this@MainActivity, "查询完成", Toast.LENGTH_SHORT).show()
+                        iwhToast("查询完成！", Gravity.BOTTOM)
                     }
 
                 }
@@ -112,7 +114,7 @@ class MainActivity : AppCompatActivity(){
                     edit.putString("dbFlag","1")//导入完成，设置标志
                     edit.apply()
                 }else{
-                    Toast.makeText(this@MainActivity, "复制失败", Toast.LENGTH_SHORT).show()
+                    iwhToast("复制失败！", Gravity.BOTTOM)
                 }
             }
 
@@ -126,7 +128,7 @@ class MainActivity : AppCompatActivity(){
                     .setMessage("群号：726619838")
                     .setPositiveButton("确认"){
                         _,_ ->
-                        Toast.makeText(this@MainActivity,"欢迎哦",Toast.LENGTH_SHORT).show()
+                        iwhToast("欢迎哦！", Gravity.BOTTOM)
                     }
                     .setNegativeButton("不了"){
                         _,_ ->
@@ -158,7 +160,7 @@ class MainActivity : AppCompatActivity(){
         when (item.itemId) {
             R.id.action_share ->
             {
-                Toast.makeText(this@MainActivity,"分享给小伙伴",Toast.LENGTH_SHORT).show()
+                iwhToast("分享给小伙伴！", Gravity.BOTTOM)
             }
             R.id.action_about -> {
                 val ab = layoutInflater.inflate(R.layout.about,null)
