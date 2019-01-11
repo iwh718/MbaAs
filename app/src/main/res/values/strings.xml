@@ -1,24 +1,17 @@
 <resources>
-    <string name="app_name">管理学助手</string>
+    <string name="app_name">MS-Office助手</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="left_list_item0">管理学原理概述</string>
-    <string name="left_list_item1">管理学：总论</string>
-    <string name="left_list_item2">决策与计划</string>
-    <string name="left_list_item3">组织</string>
-    <string name="left_list_item4">领导</string>
-    <string name="left_list_item5">控制</string>
-    <string name="left_list_item6">创新</string>
-    <string name="left_list_item7">专项复习</string>
-    <string name="about_desc"></string>
-    <string name="about_version"></string>
-    <string name="about_author"></string>
-    <string name="about_github"></string>
-    <string name="about_thanks"></string>
-    <string name="about_qq"></string>
-    <string name="about_name"></string>
+    <string name="left_list_item0">计算机基础</string>
+    <string name="left_list_item1">Word操作题</string>
+    <string name="left_list_item2">Excel操作题</string>
+    <string name="left_list_item3">PowerPoint操作题</string>
+    <string name="left_list_item4">考试大纲</string>
+    <string name="left_list_item5">考试注意</string>
+
+
 </resources>

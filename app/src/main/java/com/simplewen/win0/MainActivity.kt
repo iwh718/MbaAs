@@ -13,14 +13,14 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.CardView
+import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import com.simplewen.win0.center.iwh_fg_center
 import com.simplewen.win0.left.iwh_fg_left
-import com.simplewen.win0.right.iwhToast
 import com.simplewen.win0.right.iwh_fg_right
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        val search_box = findViewById<CardView>(R.id.card_search)//搜索快
+        val search = findViewById<SearchView>(R.id.searchView)//搜索按钮
         val list_fg = arrayListOf<Fragment>()
         val fg_left = iwh_fg_left()
         val fg_center = iwh_fg_center()
@@ -72,11 +74,11 @@ class MainActivity : AppCompatActivity(){
         var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
         iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
 
-        iwh_tab.setSelectedTabIndicatorColor(Color.parseColor("#185639"))//tab下划线颜色
+        iwh_tab.setSelectedTabIndicatorColor(Color.WHITE)//tab下划线颜色
         iwh_tab.setTabTextColors(Color.WHITE,Color.WHITE)
         iwh_tab.addTab(iwh_tab.newTab().setText("知识体系"))
-        iwh_tab.addTab(iwh_tab.newTab().setText("习题册"))
-        iwh_tab.addTab(iwh_tab.newTab().setText("我的"))
+        iwh_tab.addTab(iwh_tab.newTab().setText("公共基础"))
+        iwh_tab.addTab(iwh_tab.newTab().setText("其它"))
         //iwh_tab.setupWithViewPager(iwh_viewPage)//将viewpage与tablayout绑定一起
         iwh_tab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -128,7 +130,7 @@ class MainActivity : AppCompatActivity(){
                     .setMessage("群号：726619838")
                     .setPositiveButton("确认"){
                         _,_ ->
-                        iwhToast("欢迎哦！", Gravity.BOTTOM)
+                        iwhJoinQQ()
                     }
                     .setNegativeButton("不了"){
                         _,_ ->
@@ -160,7 +162,10 @@ class MainActivity : AppCompatActivity(){
         when (item.itemId) {
             R.id.action_share ->
             {
-                iwhToast("分享给小伙伴！", Gravity.BOTTOM)
+                val textIntent = Intent(Intent.ACTION_SEND)
+                textIntent.type = "text/plain"
+                textIntent.putExtra(Intent.EXTRA_TEXT, "Ms-Office助手:https://www.coolapk.com/apk/com.simplewen.win0.wd")
+                startActivity(Intent.createChooser(textIntent, "分享Ms助手给小伙伴！"))
             }
             R.id.action_about -> {
                 val ab = layoutInflater.inflate(R.layout.about,null)

@@ -21,8 +21,8 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
     val Create_2 = "Create table tm_dx(" +
             "sj_id integer," +
             "id integer primary key autoincrement," +
-            "content varchar,answer char(1),answer_desc varchar," +
-            "A varchar,B varchar, C varchar, D varchar,my_sort varchar);"
+            "content varchar，" +
+            "A varchar,B varchar, C varchar, D varchar,answer_desc varchar,answer char(1),my_sort varchar);"
     val mContext = context
     var sjs = arrayListOf<Map<String, Any>>()//存放数据
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -41,15 +41,21 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
     }
 
     /*查询方法*/
-    fun wen_query( db: SQLiteDatabase, hand: Handler,table_name:String,sort_type:String): Boolean {
+    /**@param db 数据库
+     * @param hand handler
+     * @param table_name 表名
+     * @param sort_type 分类
+     * @param sj_id 试卷id**/
+    fun wen_query( db: SQLiteDatabase, hand: Handler,table_name:String,sort_type:String,sj_id:Int = 1): Boolean {
         this.sjs.clear()
         var tableName:String = table_name//获取查询的表
         val sort_type = sort_type//查询类型：全部，错题，收藏。
-        var colums  = null
+        //var colums  = null
         var selection:String = ""
         when(sort_type){
             "all" -> {
-                selection = "id = 1"
+                selection = "sj_id = ${sj_id+1}"
+
             }
             "error" -> {
                 selection = "my_sort = 'error'"
@@ -59,7 +65,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
 
             }
         }
-        var cursor = db.query(tableName, colums, selection, null, null, null, null, null)
+        val cursor = db.query(tableName, null, selection, null, null, null, null, null)
 
 
         when(tableName){

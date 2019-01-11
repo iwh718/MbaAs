@@ -2,10 +2,6 @@ package com.simplewen.win0.center
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
-import android.support.constraint.solver.GoalRow
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -17,9 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
 import com.simplewen.win0.mySql
-import com.simplewen.win0.right.iwhToast
-import com.simplewen.win0.right.myLIke
-import org.w3c.dom.Text
+import com.simplewen.win0.iwhToast
 import java.lang.IllegalStateException
 
 /**实现题目的Fragment
@@ -103,10 +97,10 @@ class fg_center_tm_fg:Fragment(){
             }
             fun my_error():Boolean{
                 //自动保存错题到数据库
-                iwhToast("回答错误！",Gravity.BOTTOM,R.color.warn)
+                iwhToast("回答错误！", Gravity.BOTTOM, R.color.warn)
                 val res =  temSql.wen_update(db,"error",id)
                 if(res ==0 ){
-                   iwhToast("添加失败！",Gravity.BOTTOM,R.color.warn)
+                    iwhToast("添加失败！", Gravity.BOTTOM, R.color.warn)
                     return false
                 }
                 return true
@@ -123,7 +117,7 @@ class fg_center_tm_fg:Fragment(){
                         }
                     }
                     R.id.tm_b ->{
-                        if(right_answer != "C"){
+                        if(right_answer != "B"){
                             tmFlag = true
                         }
                     }
@@ -142,10 +136,10 @@ class fg_center_tm_fg:Fragment(){
                 if(tmFlag){
                     my_error()//错题添加数据库
                 } else{
-                   iwhToast("回答正确！",Gravity.BOTTOM)
+                    iwhToast("回答正确！", Gravity.BOTTOM)
                 }
-                tm_answer_btn.isChecked = true
-                tm_answer_box.visibility = View.VISIBLE
+                //tm_answer_btn.isChecked = true
+               // tm_answer_box.visibility = View.VISIBLE
 
             }
 

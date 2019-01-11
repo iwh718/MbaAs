@@ -1,12 +1,13 @@
-package com.simplewen.win0.right
+package com.simplewen.win0
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.Gravity
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import com.simplewen.win0.App
-import com.simplewen.win0.R
 
 
 /**自定义 Toast
@@ -15,7 +16,7 @@ import com.simplewen.win0.R
  * @param type 风格
  * **/
 
-val TYPE_DEFAULT  = R.color.colorAccent
+val TYPE_DEFAULT  = R.color.right
 fun iwhToast(showText:String,gravity:Int = Gravity.BOTTOM,type:Int = TYPE_DEFAULT){
 
         val iwhType = type
@@ -37,3 +38,14 @@ fun iwhToast(showText:String,gravity:Int = Gravity.BOTTOM,type:Int = TYPE_DEFAUL
         iwhText.text = showText
         iwhToast.show()
     }
+fun iwhJoinQQ(){
+        val intent = Intent()
+        val key="hKgBCQNgklW4c2dHwinkN85CCq-Fvyyg"
+        intent.data = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D$key")
+        // 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        try {
+               App.getContext().startActivity(intent)
+        } catch (e: Exception) {
+               iwhToast("未安装QQ或版本不支持，请手动添加")
+        }
+}

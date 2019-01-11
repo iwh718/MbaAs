@@ -19,6 +19,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
             <android.support.v7.widget.SearchView
                 app:queryHint="搜索题目"
+                android:id="@+id/searchView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -26,6 +27,25 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_search"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:elevation="5dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ListView
+                android:layout_width="match_parent"
+                android:id="@+id/search_listView"
+                android:layout_height="wrap_content">
+
+            </ListView>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <include layout="@layout/content_main" />
 

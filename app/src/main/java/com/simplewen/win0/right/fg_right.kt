@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
+import com.simplewen.win0.iwhToast
 import java.lang.Exception
 import java.util.*
 import java.text.SimpleDateFormat

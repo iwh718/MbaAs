@@ -27,6 +27,6 @@ class login : AppCompatActivity() {
             override fun run() {
                 startActivity(Intent(this@login,MainActivity::class.java))
             }
-        },2000)
+        },3000)
     }
 }

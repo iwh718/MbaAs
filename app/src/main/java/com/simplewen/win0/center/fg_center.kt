@@ -25,9 +25,6 @@ class iwh_fg_center: Fragment(){
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val vi = inflater?.inflate(R.layout.fg_center,container,false)
         val listView = vi?.findViewById<ListView>(R.id.fg_center_listview)
-        val refresh = vi?.findViewById<SwipeRefreshLayout>(R.id.fg_center_refresh)//获取下拉组件
-        refresh?.setColorSchemeResources(colorPrimaryDark)
-
         val temSql = mySql(activity,"glx",1)
         var sjs = temSql.sjs
         var adapter = SimpleAdapter(activity,sjs,R.layout.fg_center_listview, arrayOf("name","id"),intArrayOf(R.id.fg_center_listview_name))
@@ -38,16 +35,10 @@ class iwh_fg_center: Fragment(){
 
                 when(msg!!.what){
                     0 -> {
-
                         sjs = temSql.sjs
                         adapter.notifyDataSetChanged()
 
                     }
-                    1 -> {
-                        temSql.wen_query(db,this,"sj","")
-                        refresh?.isRefreshing = false
-                    }
-
                 }
             }
         }
@@ -57,17 +48,12 @@ class iwh_fg_center: Fragment(){
             _,_,position,_->
             Log.d("position:",sjs.get(position).get("id").toString())
             val intent = Intent(activity, mian_tm::class.java)
-            intent.putExtra("sj_id",position+1)
+            intent.putExtra("sj_id",position)
             intent.putExtra("fab_type","add")
             startActivity(intent)
 
         }
-        refresh?.setOnRefreshListener {
-                    val msg  = Message()
-                    msg.what = 1
-                    handle.sendMessage(msg)
 
-        }
         return vi
     }
 }

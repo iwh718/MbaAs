@@ -38,17 +38,17 @@ class left_show : AppCompatActivity() {
          * @param chKey 篇章序号
          * **/
         fun addTab(n: Int,chKey:Int) {
-                        for (ii in 0 until n + 1) {
+                        for (ii in 0..3) {
                             val fg = fg_ch_eg()
                             val args = Bundle()
                             args.putInt("chSonKey", ii)
                             args.putInt("chKey",chKey)
                             fg.arguments = args
                             fg_list.add(ii, fg)
-                            tab.addTab(tab.newTab().setText("章节${ii + 1}"))
-
                         }
-                       tab.getTabAt(n)?.text = "案例"
+            tab.addTab(tab.newTab().setText("基础知识"))
+            tab.addTab(tab.newTab().setText("视频教程"))
+            tab.addTab(tab.newTab().setText("操作例题"))
 
             }
             val gintent = intent

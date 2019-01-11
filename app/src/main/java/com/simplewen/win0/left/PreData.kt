@@ -2,7 +2,7 @@ package com.simplewen.win0.left
 import android.graphics.Bitmap
 import android.webkit.*
 import com.simplewen.win0.R
-import com.simplewen.win0.right.iwhToast
+import com.simplewen.win0.iwhToast
 
 /**静态类 存储web链接
  * author：iwh
@@ -11,12 +11,12 @@ import com.simplewen.win0.right.iwhToast
  class PreData{
    companion object {
        val chTitle = arrayListOf(
-               mapOf("chNum" to 4,"title" to "管理学总论"),
-               mapOf( "chNum" to 3,"title" to "决策与计划"),
-               mapOf("chNum" to 3,"title" to "组织"),
-               mapOf("chNum" to 3,"title" to "领导"),
-               mapOf("chNum" to 2,"title" to "控制"),
-               mapOf("chNum" to 3,"title" to "创新"))
+               mapOf("chNum" to 4,"title" to "公共基础"),
+               mapOf( "chNum" to 3,"title" to "计算机基础"),
+               mapOf("chNum" to 3,"title" to "Word相关练习"),
+               mapOf("chNum" to 3,"title" to "Excel相关练习"),
+               mapOf("chNum" to 2,"title" to "PowerPoint相关练习"),
+               mapOf("chNum" to 3,"title" to "支持"))
        val chOneUrl = arrayListOf("https://www.borebooks.top/MAS/MAS_one/MAS_ch_one_1.htm",
                "https://www.borebooks.top/MAS/MAS_one/MAS_ch_one_2.htm",
                "https://www.borebooks.top/MAS/MAS_one/MAS_ch_one_3.htm",

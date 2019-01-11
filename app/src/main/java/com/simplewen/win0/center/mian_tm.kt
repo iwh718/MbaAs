@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.simplewen.win0.R
+import com.simplewen.win0.iwhToast
 import com.simplewen.win0.iwh_view_page_adapter
 import com.simplewen.win0.mySql
 import kotlinx.android.synthetic.main.activity_fg_center_tm.*
@@ -25,12 +26,13 @@ class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fg_center_tm)
         setSupportActionBar(toolbar)
-        toolbar.title = "题目练习"
+        toolbar.title = "公共基础题目练习"
         toolbar.setTitleTextColor(Color.WHITE)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val list_fg = arrayListOf<Fragment>()
-        val sj_id = intent.getStringExtra("sj_id")
+        val sj_id = intent.getIntExtra("sj_id",0)
+        if(sj_id!=0) iwhToast(sj_id.toString())
         val fab_type = intent.getStringExtra("fab_type")
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm)
         var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager, list_fg)
@@ -82,7 +84,7 @@ class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {
                 }
             }
         }
-       temSql.wen_query(db,handle,"tm_dx","")//查询题目
+       temSql.wen_query(db,handle,"tm_dx","all",sj_id)//查询题目
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

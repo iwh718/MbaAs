@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import com.simplewen.win0.R
 import com.simplewen.win0.left.PreData
-import com.simplewen.win0.right.iwhToast
+import com.simplewen.win0.iwhToast
 
 
 class fg_ch_eg :Fragment(){
@@ -27,7 +27,7 @@ class fg_ch_eg :Fragment(){
             }
 
         } catch (e:NullPointerException){
-            iwhToast(e.printStackTrace().toString(),R.color.warn)
+            iwhToast(e.printStackTrace().toString(), R.color.warn)
         }
        return vi
     }

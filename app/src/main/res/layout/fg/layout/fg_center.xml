@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:id="@+id/fg_center_refresh"
-        android:layout_height="wrap_content">
-        <ListView
-            android:dividerHeight="0dp"
-            android:divider="#FFCC00"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fg_center_listview">
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="目前计算机公共题目大约400+选择题 "/>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
 
-        </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <ListView
+        android:layout_marginTop="10dp"
+        android:dividerHeight="0dp"
+        android:divider="#FFCC00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fg_center_listview">
 
-</android.support.constraint.ConstraintLayout>
+    </ListView>
+
+</LinearLayout>
