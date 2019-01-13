@@ -51,10 +51,13 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
         var tableName:String = table_name//获取查询的表
         val sort_type = sort_type//查询类型：全部，错题，收藏。
         //var colums  = null
-        var selection:String = ""
+        var selection:String?  = null
         when(sort_type){
             "all" -> {
-                selection = "sj_id = ${sj_id+1}"
+                if(sj_id == 0)   selection = null
+                else
+                    selection = "sj_id = $sj_id"
+
 
             }
             "error" -> {

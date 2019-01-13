@@ -1,6 +1,7 @@
 package com.simplewen.win0.center
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -15,6 +16,14 @@ import com.simplewen.win0.R
 import com.simplewen.win0.mySql
 import com.simplewen.win0.iwhToast
 import java.lang.IllegalStateException
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import com.simplewen.win0.App
+import kotlinx.android.synthetic.main.fg_center_tm.*
+import java.io.IOException
+import java.lang.Exception
+
 
 /**实现题目的Fragment
  * author：iwh
@@ -29,23 +38,84 @@ class fg_center_tm_fg:Fragment(){
     }
         private  var mcallbacks:Callbacks?= null//回调
 
+        /**获取题目内部图片**/
+
+        inner class getImg{
+            /**设置单选图片
+             * @param tm_key 指定radioButton
+             * @return 返回本类实现链式调用**/
+          fun setImg(tm_key:RadioButton):getImg{
+                "(?<=@##)[\\s\\S]*?(?=[\$][\$]@)".toRegex().find(tm_key.text.toString())?.value?.let {
+                    iwhToast("$it")
+                    val radio_img_res = resources.assets.open("ms_imgs/$it")
+                    try {
+                        val radio_key_img = Drawable.createFromStream(radio_img_res,null)
+                        radio_key_img.setBounds(0,0,radio_key_img.intrinsicWidth*3,radio_key_img.intrinsicHeight*3)
+                        tm_key.setCompoundDrawables(null,null,null,radio_key_img)
+                        tm_key.text = tm_key.text.toString().replace("@##${it}$$@","")
+                    }catch (e:Exception){
+                        iwhToast("$e")
+                    }finally {
+                        radio_img_res.close()
+                    }
+
+
+                }
+                return getImg()
+
+            }
+        }
+
         override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val ags = arguments
             val position = arguments.getInt("position")//获取FG下标
-            var fab_type = arguments.getString("fab_type")
+            val fab_type = arguments.getString("fab_type")
             val temSql = mySql(activity,"glx",1)//初始化数据库链接
             val db = temSql.writableDatabase//获取读写对象
-            var vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
-            vi?.findViewById<TextView>(R.id.tm_content)!!.text = ags.getString("tm_content") + "__"
-            vi.findViewById<TextView>(R.id.tm_answer_right).text = "正确答案：" +  ags.getString("tm_answer")
-            Log.d("answer_desc",ags.getString("tm_answer_desc"))
-            vi.findViewById<TextView>(R.id.tm_answer_desc).text = "解析:" +  ags.getString("tm_answer_desc")
-            vi.findViewById<RadioButton>(R.id.tm_a).text = "A:${ags.getString("tm_a")}"
-            vi.findViewById<RadioButton>(R.id.tm_b).text = "B:" +  ags.getString("tm_b")
-            vi.findViewById<RadioButton>(R.id.tm_c).text = "C:" +  ags.getString("tm_c")
-            vi.findViewById<RadioButton>(R.id.tm_d).text = "D:" +  ags.getString("tm_d")
+            val vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
+            val tm_img = vi!!.findViewById<ImageView>(R.id.tm_img)//题目图片
+            val tm_content = vi.findViewById<TextView>(R.id.tm_content)//题目
+
+
+           tm_content.text =  if(position == 19) {
+                "最后一题：${ags.getString("tm_content").replace("<br/>", "")}"
+            }else {
+                "第${position + 1}题：${ags.getString("tm_content").replace("<br/>", "")}"
+            }
+
+                //设置题目图片
+                val tm_img_path = "(?<=@##)[\\s\\S]*?(?=[\$][\$]@)".toRegex().find(tm_content.text.toString())?.value
+                Log.d("@@","$tm_img_path")
+                tm_img_path?.let {
+                    iwhToast(it)
+                    val tm_img_res = resources.assets.open("ms_imgs/$it")
+                    val bitmap = BitmapFactory.decodeStream(tm_img_res)
+                    tm_img_res.close()
+                    tm_img.setImageBitmap(bitmap)
+                    tm_img.visibility = View.VISIBLE
+                    tm_content.text = tm_content.text.toString().replace("@##${it}$$@","")
+                }
+
+
+
+            val tm_right_answer = vi.findViewById<TextView>(R.id.tm_answer_right)
+            val tm_answer_desc  =   vi.findViewById<TextView>(R.id.tm_answer_desc)
+            val tm_A = vi.findViewById<RadioButton>(R.id.tm_a)
+            val tm_B =  vi.findViewById<RadioButton>(R.id.tm_b)
+            val tm_C =   vi.findViewById<RadioButton>(R.id.tm_c)
+            val tm_D = vi.findViewById<RadioButton>(R.id.tm_d)
+            tm_right_answer.text = "正确答案：" +  ags.getString("tm_answer")
+            tm_answer_desc.text =  ags.getString("tm_answer_desc").replace("<br/>","")
+            tm_A.text = "A:${ags.getString("tm_a").replace("<br/>","")}"
+            tm_B.text = "B:" +  ags.getString("tm_b").replace("<br/>","")
+            tm_C.text = "C:" +  ags.getString("tm_c").replace("<br/>","")
+            tm_D.text = "D:" +  ags.getString("tm_d").replace("<br/>","")
+
+           //设置单选图片
+            getImg().setImg(tm_A).setImg(tm_B).setImg(tm_C).setImg(tm_D)
+
+
             val id = ags.getString("tm_id")//获取id
-            Log.d("id",id)
             val right_answer = ags.getString("tm_answer")//正确答案
             val my_like_btn = vi.findViewById<FloatingActionButton>(R.id.my_like)//添加收藏按钮
             if(fab_type == "add"){

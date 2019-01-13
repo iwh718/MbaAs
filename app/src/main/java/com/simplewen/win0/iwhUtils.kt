@@ -8,6 +8,8 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**自定义 Toast
@@ -48,4 +50,22 @@ fun iwhJoinQQ(){
         } catch (e: Exception) {
                iwhToast("未安装QQ或版本不支持，请手动添加")
         }
+}
+/**时间转换
+ * @param toSeconds 输入毫秒返回日期**/
+fun formatTime(toSeconds:String):String{
+
+ return ""
+}
+
+/**
+ * @param timeFormat 时间格式
+ * 指定格式，返回毫秒**/
+fun formatTime(timeFormat:String = "yyyy/MM/dd",timeString:String):Long{
+        val spd = SimpleDateFormat(timeFormat, Locale.CHINA)
+        return spd.parse(timeString).time
+}
+/**返回倒计时**/
+fun getDjs(timeN:String,timeO:String):Int{
+        return ((timeN.toLong() - timeO.toLong())/(1000*24*60*60)).toInt()
 }
