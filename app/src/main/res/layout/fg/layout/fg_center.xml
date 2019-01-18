@@ -18,7 +18,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="目前计算机公共题目大约400+选择题 "/>
+                    android:text="目前题库公共题目,包含office（500+) "/>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>

@@ -46,7 +46,6 @@ class fg_center_tm_fg:Fragment(){
              * @return 返回本类实现链式调用**/
           fun setImg(tm_key:RadioButton):getImg{
                 "(?<=@##)[\\s\\S]*?(?=[\$][\$]@)".toRegex().find(tm_key.text.toString())?.value?.let {
-                    iwhToast("$it")
                     val radio_img_res = resources.assets.open("ms_imgs/$it")
                     try {
                         val radio_key_img = Drawable.createFromStream(radio_img_res,null)
@@ -106,10 +105,10 @@ class fg_center_tm_fg:Fragment(){
             val tm_D = vi.findViewById<RadioButton>(R.id.tm_d)
             tm_right_answer.text = "正确答案：" +  ags.getString("tm_answer")
             tm_answer_desc.text =  ags.getString("tm_answer_desc").replace("<br/>","")
-            tm_A.text = "A:${ags.getString("tm_a").replace("<br/>","")}"
-            tm_B.text = "B:" +  ags.getString("tm_b").replace("<br/>","")
-            tm_C.text = "C:" +  ags.getString("tm_c").replace("<br/>","")
-            tm_D.text = "D:" +  ags.getString("tm_d").replace("<br/>","")
+            tm_A.text = ags.getString("tm_a").replace("<br/>","")
+            tm_B.text =  ags.getString("tm_b").replace("<br/>","")
+            tm_C.text = ags.getString("tm_c").replace("<br/>","")
+            tm_D.text = ags.getString("tm_d").replace("<br/>","")
 
            //设置单选图片
             getImg().setImg(tm_A).setImg(tm_B).setImg(tm_C).setImg(tm_D)

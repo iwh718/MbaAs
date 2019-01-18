@@ -130,7 +130,8 @@ class MainActivity : AppCompatActivity(){
                     .setMessage("群号：726619838")
                     .setPositiveButton("确认"){
                         _,_ ->
-                        iwhJoinQQ()
+                        //iwhJoinQQ()
+                        iwhToast("你没事和我聊天不行吗！！")
                     }
                     .setNegativeButton("不了"){
                         _,_ ->

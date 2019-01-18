@@ -6,12 +6,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="left_list_item0">计算机基础</string>
-    <string name="left_list_item1">Word操作题</string>
-    <string name="left_list_item2">Excel操作题</string>
-    <string name="left_list_item3">PowerPoint操作题</string>
+    <string name="left_list_item0">公共基础</string>
+    <string name="left_list_item1">Word教程</string>
+    <string name="left_list_item2">Excel教程</string>
+    <string name="left_list_item3">PowerPoint教程</string>
     <string name="left_list_item4">考试大纲</string>
-    <string name="left_list_item5">考试注意</string>
+    <string name="left_list_item5">计算机基础知识</string>
 
 
 </resources>

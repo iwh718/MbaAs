@@ -1,6 +1,7 @@
 package com.simplewen.win0.left
 
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
+import com.simplewen.win0.iwhToast
+import com.simplewen.win0.left.ch.jcShow
 
 class iwh_fg_left: Fragment(){
 
@@ -28,7 +31,8 @@ class iwh_fg_left: Fragment(){
             itemsV[i].setOnClickListener{
                 val intent = Intent(activity,left_show::class.java)
                 intent.putExtra("key",i)
-                activity.startActivity(intent)
+                //activity.startActivity(intent)
+                iwhToast("暂未开放！")
             }
         }
 
@@ -36,13 +40,30 @@ class iwh_fg_left: Fragment(){
         val listenerOthers  = View.OnClickListener{
             when(it.id){
                R.id.left_list_item1 -> {
-
+                    AlertDialog.Builder(activity)
+                            .setItems(PreData.jcItems){
+                                _,which ->
+                                AlertDialog.Builder(activity)
+                                        .setItems(PreData.jcC[which]){
+                                            _,whichIn ->
+                                            val intent = Intent(activity,jcShow::class.java)
+                                            intent.putExtra("jcKey",PreData.jcC[which][whichIn])
+                                            startActivity(intent)
+                                        }.setTitle("选择小节")
+                                        .create().show()
+                            }.setTitle("选择篇章").create().show()
                }
                 R.id.left_list_item5 ->{
-
+                    iwhToast("大纲暂未上线！")
                 }
                 R.id.left_list_item6 ->{
-
+                    AlertDialog.Builder(activity)
+                            .setItems(PreData.jcItems2){
+                                _,which ->
+                                val intent = Intent(activity,jcShow::class.java)
+                                intent.putExtra("jcKey",PreData.jcItems2[which])
+                                startActivity(intent)
+                            }.setTitle("选择篇章").create().show()
                 }
             }
         }
