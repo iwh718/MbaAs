@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>排序技术</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    body{
+        font-family: '楷体'
+    }
+p{
+    text-indent: 20px;
+    font-family: '楷体'
+}
+
+</style>
+</head>
+<body style="background:#CDB38B; ">
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <strong>1.4 栈和队列</strong>
+</p>
+<p>
+    1.4.1 栈及其基本运算
+</p>
+<p>
+    栈和队列是两种特殊的线性表，它们的逻辑结构和线性表相同，只是其运算规则较线性表有一些限制，故又称为运算受限的线性表。
+</p>
+<p>
+    1.栈的定义
+</p>
+<p>
+    &nbsp; &nbsp; 栈（Stack）是一种特殊的线性表，其插入与删除运算都限定在线性表的同一端进行。在栈中，一端是封闭的，既不允许进行插入元素，也不允许删除元素；另一端是开口的，允许插入和删除元素。
+</p>
+<p>
+    &nbsp; &nbsp; 在栈中，允许插入与删除的一端称为栈顶，不允许插入与删除的另一端称为栈底。当栈中没有元素时，称为空栈。通常用指针top来指示栈顶的位置，用指针bottom来指向栈底。
+</p>
+<p>
+    &nbsp; &nbsp; 假设栈S=（a1，a2，…，an），则称a1 为栈底元素，an为栈顶元素。栈中元素按a1，a2，…，an的次序进栈，退栈的第一个元素应为栈顶元素an。图1-6是栈的入栈、退栈示意图。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    
+    <br> <br>
+       &nbsp;图1-6 栈结构&nbsp;<br>
+    <img src="file:///android_asset/local_html/local_imgs/T1-6.jpg" style="width:100%;border-radius: 10px;">
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; &nbsp; 栈这种数据结构在日常生活中也是常见的。例如，子弹夹是一种栈的结构，最后压入的子弹总是最先被弹出，而最先压入的子弹最后才能被弹出。
+</p>
+<p>
+    2.栈的特点
+</p>
+<p>
+    &nbsp; &nbsp; 根据栈的上述定义，栈具有以下特点。
+</p>
+<p>
+    &nbsp; （1）栈顶元素总是最后被插入的元素，也是最早被删除的元素；
+</p>
+<p>
+    &nbsp; （2）栈底元素总是最早被插入的元素，也是最晚才能被删除的元素；
+</p>
+<p>
+    &nbsp; （3）栈具有记忆作用；
+</p>
+<p>
+    &nbsp; （4）在顺序存储结构下，栈的插入和删除运算都不需要移动表中其他元素；
+</p>
+<p>
+    &nbsp; （5）站定指针top动态反映了栈中元素的变化情况。
+</p>
+<p>
+    &nbsp; &nbsp; 栈的修改原则是“后进先出”（Last In First Out，LIFO） 或“先进后出”（First In Last Out，FILO），因此，栈也称为“后进先出”表或“先进后出”表。
+</p>
+<p>
+    3栈的基本运算
+</p>
+<p>
+    &nbsp; &nbsp; 栈的基本运算有3种：入栈、退栈和读栈顶元素。
+</p>
+<p>
+    &nbsp; （1）入栈运算
+</p>
+<p>
+    &nbsp; &nbsp; 入栈运算即栈的插入，在栈顶位置插入一个新元素。
+</p>
+<p>
+    &nbsp; （2）退栈运算
+</p>
+<p>
+    &nbsp; &nbsp; 退栈运算即栈的删除，就是取出栈顶元素赋予指定变量。
+</p>
+<p>
+    &nbsp; （3）读栈顶元素
+</p>
+<p>
+    &nbsp; &nbsp; 读栈顶元素是将栈顶元素（即栈顶指针top指向的元素）的值赋给一个指定的变量。
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;栈和一般线性表的实现方法类似，通常也可以采用顺序方式和链接方式来实现，在此只介绍栈的顺序存储。
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;图1-7所示是一个顺序表示的栈的动态示意图。随着元素的插入和删除，栈顶指针top反应了栈的状态不断地变化。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+      <br> <br>
+      图1-7 栈在顺序存储结构下的运算&nbsp;<br>
+    <img src="file:///android_asset/local_html/local_imgs/T1-7.jpg" style="width:100%;border-radius: 10px;">
+    
+   
+
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    1.4.2 队列及其基本运算
+</p>
+<p>
+    1.什么是队列
+</p>
+<p>
+    &nbsp; &nbsp; 队列（Queue）是指允许在一端进行插入，而在另一端进行删除的线性表。允许插入的一端称为队尾，通常用一个称为尾指针（rear）的指针指向队尾元素；允许删除的一端称为队头（或排头），通常用一个称为头指针（front）的指针指向头元素的前一个位置。
+</p>
+<p>
+    &nbsp; &nbsp; 在队列这种数据结构中，最先插入的元素将最先被删除，反之，最后插入的元素最后才被删除。因此，队列又称为“先进先出”（First In First Out，FIFO）或“后进后出”（Last In Last Out，LILO）的线性表，它体现了“先来先服务”的原则。在队列中，队尾指针rear和队头指针front共同反映了队列中元素动态变化的情况。图1-8是队列的示意图。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+     <br> <br>
+       &nbsp;&nbsp;图1-8 队列示意图&nbsp;<br>
+    <img src="file:///android_asset/local_html/local_imgs/T1-8.jpg" style="width:100%;border-radius: 10px;">
+    
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; &nbsp; 往队列的队尾插入一个元素称为入队运算，从队列的排头删除一个元素称为退队运算。
+</p>
+<p>
+    &nbsp; &nbsp; 例如，图1-9是在队列中进行插入与删除的示意图，一个大小为10的数组，用于表示队列，初始时，队列为空，如图1-9（a）所示；插入数据a后，如图1-9（b）所示；插入数据b后，如图1-9（c）所示；删除数据a后，如图1-9（d）所示。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+   
+        <br> <br>
+       图1-9 队列运算示意图&nbsp;
+    <img src="file:///android_asset/local_html/local_imgs/T1-9.jpg" style="width:100%;border-radius: 10px;">
+    
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; &nbsp; 与栈类似，在程序设计语言中，常用一维数组作为队列的顺序存储空间。
+</p>
+<p>
+    2.循环队列及其运算
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;在实际应用中，队列的顺序存储结构一般采用循环队列的形式。
+</p>
+<p>
+    &nbsp; &nbsp; 循环队列就是将队列存储空间的最后一个位置绕到第一个位置，形成逻辑上的环状空间，供队列循环使用。在循环队列结构中，当存储空间的最后一个位置已被使用而再要进行入队运算时，只要存储空间的第一个位置空闲，便可将元素加入到第一个位置，即将存储空间的第一个位置作为队尾。
+</p>
+<p>
+    &nbsp; &nbsp; 在循环队列中，用队尾指针rear指向队列中的队尾元素，用排头指针指向排头元素的前一个位置，因此，从排头指针front指向的后一个位置直到队尾指针rear指向的位置之间所有的元素均为队列中的元素。
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;循环队列的初始状态为空，即rear=front=m，如图1-10所示。
+</p>
+<p>
+    <br/>
+</p>
+<p>
+     <br> <br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图1-10 循环队列初始状态示意图
+    <img src="file:///android_asset/local_html/local_imgs/T1-10.jpg" style="width:100%;border-radius: 10px;">
+   
+</p>
+<p>
+    &nbsp; &nbsp; 循环队列的基本运算主要有两种：入队运算与退队运算。
+</p>
+<p>
+    &nbsp; &nbsp;（1）入队运算
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;入队运算是指在循环队列的队尾加入一个新元素。入队运算可分为两个步骤：首先队尾指针进1（即rear＋1），然后在rear指针指向的位置，插入新元素。特别的，当队尾指针rear=m+1 时（即rear原值为m，再进1），置rear=1。这表示在最后一个位置插入元素后，紧接着在第一个位置插入新元素。
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;例如，在图1-11（a）中进行入队运算，首先队尾指针进1，此时rear=m+1，置rear=1，则在第1个位置上插入数据a，见图1-11（b）；当插入第2个数据b时，队尾指针进1，rear=2，在第2个位置上插入数据b，依此类推，直到把所有的数据元素插入完成，见图1-11（c）所示。
+</p>
+<p>
+    &nbsp; &nbsp;（2）退队运算
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;退队运算是指在循环队列的排头位置退出一个元素，并赋给指定的变量。退队运算也可分为两个步骤：首先，排头指针进1（即front＋1），然后删除front指针指向的位置上的元素。特别的，当排头指针front=m+1时（即front原值为m，再进1），置front=1。这表示，在最后一个位置删除元素后，紧接着在第一个位置删除元素。
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;例如，在图1-11（c）中进行退队运算时，排头指针进1（即front+1），此时front=m+1，置front=1，删除此位置的数据，即数据a，见图1-11（d）所示。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+   
+    <br> <br>
+      &nbsp;图1-11 循环队列动态示意图&nbsp;
+    <img src="file:///android_asset/local_html/local_imgs/T1-11.jpg" style="width:100%;border-radius: 10px;">
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    <br/>
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;从图1-11（a）和图1-11（c）可以看出，循环队列在队列满时和队列空时都有front=rear。为了区分这两种情况，在实际应用中，通常增加一个标志量S，S的值定义如下：
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;S=0，表示循环队列为空；
+</p>
+<p>
+    &nbsp; &nbsp; &nbsp;S=1，表示循环队列非空。
+</p>
+<p>
+    &nbsp; &nbsp; 由此可以判断队列空和队列满的条件如下：
+</p>
+<p>
+    &nbsp; &nbsp; 当S=0时，循环队列为空，此时不能再进行退队运算，否则会发生“下溢”错误。
+</p>
+<p>
+    &nbsp; &nbsp; 当S=1且front=rear时，循环队列满。此时不能再进行入队运算，否则会发生“上溢”错误。
+</p>
+<p>
+    &nbsp; &nbsp; 在定义了S以后，循环队列初始状态为空，表示为：S=0，且front=rear=m。&nbsp;
+</p>
+<p>
+    <br/>
+</p>
+</body></html>

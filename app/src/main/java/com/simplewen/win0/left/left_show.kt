@@ -17,6 +17,7 @@ import com.simplewen.win0.R
 import com.simplewen.win0.iwh_view_page_adapter
 import com.simplewen.win0.left.ch.*
 
+/**首页左侧知识体系->功能首页->控制Fg输出**/
 class left_show : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,26 +35,28 @@ class left_show : AppCompatActivity() {
         tab.isScrollContainer
 
         /**添加 tab 面板
-         * @param n 章节数
          * @param chKey 篇章序号
          * **/
-        fun addTab(n: Int,chKey:Int) {
-                        for (ii in 0..3) {
+        fun addTab(chKey:Int) {
+                        for (ii in 0..2) {
                             val fg = fg_ch_eg()
                             val args = Bundle()
-                            args.putInt("chSonKey", ii)
                             args.putInt("chKey",chKey)
+                            args.putInt("sonKey",ii)
                             fg.arguments = args
                             fg_list.add(ii, fg)
                         }
+
             tab.addTab(tab.newTab().setText("基础知识"))
             tab.addTab(tab.newTab().setText("视频教程"))
-            tab.addTab(tab.newTab().setText("操作例题"))
+            tab.addTab(tab.newTab().setText("真考例题"))
 
             }
             val gintent = intent
             //接收活动数据
             Log.d("intent", gintent.getIntExtra("key", 0).toString())
+
+            /** nkey 主页面传来的下标，区分类型0：word,1:excel,2:ppt**/
             val nkey = gintent.getIntExtra("key", 10)
             when (nkey) {
                 10 -> {
@@ -61,7 +64,7 @@ class left_show : AppCompatActivity() {
                 }
                 else ->{
                     supportActionBar?.title = PreData.chTitle[nkey]["title"].toString()
-                    addTab(PreData.chTitle[nkey]["chNum"].toString().toInt(), nkey+1)
+                    addTab(nkey)
                 }
 
             }

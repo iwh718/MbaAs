@@ -12,7 +12,7 @@ import com.simplewen.win0.MainActivity
 import com.simplewen.win0.R
 import com.simplewen.win0.iwhToast
 import kotlinx.android.synthetic.main.activity_jc_show.*
-
+/**本地html输出**/
 class jcShow : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

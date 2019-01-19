@@ -31,8 +31,8 @@ class iwh_fg_left: Fragment(){
             itemsV[i].setOnClickListener{
                 val intent = Intent(activity,left_show::class.java)
                 intent.putExtra("key",i)
-                //activity.startActivity(intent)
-                iwhToast("暂未开放！")
+                activity.startActivity(intent)
+               // iwhToast("暂未开放！")
             }
         }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -7,6 +7,8 @@
     android:layout_height="match_parent">
         <android.support.v7.widget.CardView
             android:elevation="10dp"
+            android:id="@+id/tmCard"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
               <LinearLayout
@@ -29,45 +31,58 @@
                       android:layout_height="wrap_content" />
               </LinearLayout>
         </android.support.v7.widget.CardView>
-      <android.support.v7.widget.CardView
-          android:layout_margin="10dp"
-          android:elevation="10dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-              <RadioGroup
-                  android:id="@+id/tm_select_group"
-                  android:layout_margin="20dp"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
 
-                      <RadioButton
-                          android:id="@+id/tm_a"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_marginTop="20dp"
-                          android:text="选项A：" />
-                      <RadioButton
-                          android:layout_marginTop="20dp"
-                          android:text="选项B："
-                          android:id="@+id/tm_b"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content" />
-                      <RadioButton
-                          android:layout_marginTop="20dp"
-                          android:text="选项C："
-                          android:id="@+id/tm_c"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content" />
-                      <RadioButton
-                          android:layout_marginTop="20dp"
-                          android:text="选项D："
-                          android:id="@+id/tm_d"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content" />
-              </RadioGroup>
-      </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/tmCard"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+
+            android:id="@+id/selectCard"
+            android:elevation="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/tm_select_group"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/tm_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="选项A：" />
+                <RadioButton
+                    android:layout_marginTop="20dp"
+                    android:text="选项B："
+                    android:id="@+id/tm_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:layout_marginTop="20dp"
+                    android:text="选项C："
+                    android:id="@+id/tm_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:layout_marginTop="20dp"
+                    android:text="选项D："
+                    android:id="@+id/tm_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.CardView
             android:padding="10dp"
+            android:layout_margin="10dp"
+            android:id="@+id/answerCard"
+            app:layout_constraintTop_toBottomOf="@+id/selectCard"
             android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -86,51 +101,60 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
 
-            android:layout_marginTop="10dp"
-            android:elevation="10dp"
+        </android.support.v7.widget.CardView>
+        <ScrollView
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/tm_answer_box"
+        <android.support.v7.widget.CardView
+            app:layout_constraintTop_toBottomOf="@+id/answerCard"
+            android:layout_marginTop="10dp"
+            android:elevation="10dp"
+            android:id="@+id/descCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/tm_answer_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+
+                    android:padding="10dp"
+                    android:text="正确答案"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                        <TextView
+                    android:id="@+id/tm_answer_right"/>
+                <TextView
+                    android:text="解析"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tm_answer_desc"/>
 
-                            android:padding="10dp"
-                            android:text="正确答案"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/tm_answer_right"/>
-                       <ScrollView
-                           android:padding="10dp"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content">
-                           <TextView
-                               android:text="解析"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:id="@+id/tm_answer_desc"/>
-                       </ScrollView>
 
-                </LinearLayout>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:background="#fff"
-            android:backgroundTint="#fff"
-            app:elevation="10dp"
-            android:layout_margin="10dp"
-            android:id="@+id/my_like"
-            android:layout_gravity="right"
-            android:layout_height="wrap_content"
-            android:src="@drawable/my_like"/>
+        </ScrollView>
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:background="#fff"
+        android:backgroundTint="#fff"
+        app:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="10dp"
+        android:id="@+id/my_like"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:src="@drawable/my_like"/>
 
 
 
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

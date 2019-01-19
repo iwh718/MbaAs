@@ -15,15 +15,18 @@ import com.simplewen.win0.iwhToast
 class fg_ch_eg :Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val chSonkey = arguments.getInt("chSonKey")
+
         val chKey = arguments.getInt("chKey")
+        val sonKey = arguments.getInt("sonKey")
+        iwhToast("sonkey:$sonKey")
+
         var vi = inflater.inflate(R.layout.fg_ch_one,container,false)
 
         try {
             vi = inflater.inflate(R.layout.fg_ch_one,container,false)
             val web = vi.findViewById<WebView>(R.id.fg_ch_one_web)
             web?.let{
-                PreData.webAutoLoad(web,PreData.getPreUrl(chKey,chSonkey+1) )
+                PreData.webAutoLoad(web,PreData.getPreUrl(chKey,sonKey) )
             }
 
         } catch (e:NullPointerException){
