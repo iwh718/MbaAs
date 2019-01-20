@@ -18,7 +18,7 @@ import com.simplewen.win0.iwh_view_page_adapter
 import com.simplewen.win0.mySql
 import kotlinx.android.synthetic.main.activity_my_like.*
 
-
+/**我的收藏**/
 class myLIke : AppCompatActivity(),fg_center_tm_fg.Callbacks {
 
     var handle:Handler? = null
@@ -69,16 +69,11 @@ class myLIke : AppCompatActivity(),fg_center_tm_fg.Callbacks {
                             arguments.putString("sj_id",content["sj_d"].toString())
                             arguments.putString("fab_type","delete")//设置fab删除功能
                             arguments.putInt("position",i)//FG下标
-
                             fg.arguments = arguments
-
                             list_fg.add(fg)
                         }
                         iwh_view_page_adapter.notifyDataSetChanged()
-
                         Log.d("myTm:",sjs.toString())
-
-
                     }
                     1->{
 
@@ -91,16 +86,9 @@ class myLIke : AppCompatActivity(),fg_center_tm_fg.Callbacks {
             }
         }
 
-
-
-
         //Toast.makeText(this@myLIke,my_flag,Toast.LENGTH_SHORT).show()
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage_tm_like)
-
         iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
-
-
-
         temSql.wen_query(db,handle!!,"tm_dx",my_flag)//查询题目
 
     }

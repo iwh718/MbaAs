@@ -55,8 +55,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
         when(sort_type){
             "all" -> {
                 if(sj_id == 0)   selection = null
-                else
-                    selection = "sj_id = $sj_id"
+                else selection = "sj_id = $sj_id"
 
 
             }
@@ -66,6 +65,9 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
             "like" -> {
                 selection ="my_sort = 'like'"
 
+            }
+            else ->{
+                selection = "content LIKE '%${sort_type}%'"
             }
         }
         val cursor = db.query(tableName, null, selection, null, null, null, null, null)
@@ -110,7 +112,7 @@ class mySql(context: Context,name:String,version:Int ):SQLiteOpenHelper(context,
 
                         temMAp.put("sj_id", sj_id)
                         temMAp.put("id", id)
-                        temMAp.put("content", content)
+                        temMAp.put("content", content.replace("<br/>",""))
                         temMAp.put("A", A)
                         temMAp.put("B", B)
                         temMAp.put("C", C)

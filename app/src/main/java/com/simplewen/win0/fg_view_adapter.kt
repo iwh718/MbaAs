@@ -8,7 +8,7 @@ import android.support.v4.view.PagerAdapter
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-
+/**重写viewPge中的Fragment**/
 class iwh_view_page_adapter(fm:FragmentManager,fg_list:ArrayList<Fragment>): FragmentStatePagerAdapter(fm){
     private var listFg = arrayListOf<Fragment>()
     init {

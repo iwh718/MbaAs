@@ -4,7 +4,7 @@ import android.webkit.*
 import com.simplewen.win0.R
 import com.simplewen.win0.iwhToast
 
-/**静态类 存储web链接
+/**静态类 存储该项目的各类静态数据
  * author：iwh
  * time ：2019.01.8
  * **/

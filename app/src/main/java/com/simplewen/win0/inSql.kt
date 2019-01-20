@@ -7,11 +7,7 @@ import android.util.Log
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-
-
-
-
-
+/**导入数据库**/
 class ImportDB internal constructor(private val context: Context) {
     private val BUFFER_SIZE =10000
     companion object {
@@ -23,10 +19,8 @@ class ImportDB internal constructor(private val context: Context) {
         val dbfile = "$DB_PATH/$DB_NAME"
         Log.d("look",dbfile)
         try {
-
-
             //执行数据库导入
-            val db = this.context.resources.assets.open("glx") //欲导入的数据库
+            val db = this.context.resources.assets.open(DB_NAME) //欲导入的数据库
             val fos = FileOutputStream(dbfile)
             val buffer = ByteArray(BUFFER_SIZE)
             var count = 0
@@ -34,7 +28,7 @@ class ImportDB internal constructor(private val context: Context) {
                         fos.write(buffer, 0, count)
             }
             fos.close()//关闭输出流
-            db.close()//关闭输入流
+            db.close()//关闭数据库
             return true
         }catch (e: Throwable) {
             Log.d("look",e.toString())

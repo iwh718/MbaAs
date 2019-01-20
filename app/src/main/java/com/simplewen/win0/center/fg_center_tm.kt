@@ -31,15 +31,10 @@ import java.lang.Exception
  * 实现题目的显示，错题自动保存，添加收藏，错题集的显示与收藏显示**/
 class fg_center_tm_fg:Fragment(){
     interface Callbacks{
-
-        fun onRemove(position:Int){
-
-        }
+        fun onRemove(position:Int)
     }
         private  var mcallbacks:Callbacks?= null//回调
-
         /**获取题目内部图片**/
-
         inner class getImg{
             /**设置单选图片
              * @param tm_key 指定radioButton
@@ -73,10 +68,13 @@ class fg_center_tm_fg:Fragment(){
             val db = temSql.writableDatabase//获取读写对象
             val vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
             val tm_img = vi!!.findViewById<ImageView>(R.id.tm_img)//题目图片
-            val tm_content = vi.findViewById<TextView>(R.id.tm_content)//题目
-
-
-           tm_content.text =  if(position == 19) {
+            val tm_content =    vi.findViewById<TextView>(R.id.tm_content)
+            val tm_answer_box = vi.findViewById<LinearLayout>(R.id.tm_answer_box)
+            val tm_answer_desc  = vi.findViewById<TextView>(R.id.tm_answer_desc)
+            val tm_answer_right = vi.findViewById<TextView>(R.id.tm_answer_right)
+            val tm_select_group = vi.findViewById<RadioGroup>(R.id.tm_select_group)
+            val tm_answer_btn = vi.findViewById<Switch>(R.id.tm_answer_btn)
+            tm_content.text =  if(position == 19) {
                 "最后一题：${ags.getString("tm_content").replace("<br/>", "")}"
             }else {
                 "第${position + 1}题：${ags.getString("tm_content").replace("<br/>", "")}"
@@ -95,23 +93,8 @@ class fg_center_tm_fg:Fragment(){
                     tm_content.text = tm_content.text.toString().replace("@##${it}$$@","")
                 }
 
-
-
-            val tm_right_answer = vi.findViewById<TextView>(R.id.tm_answer_right)
-            val tm_answer_desc  =   vi.findViewById<TextView>(R.id.tm_answer_desc)
-            val tm_A = vi.findViewById<RadioButton>(R.id.tm_a)
-            val tm_B =  vi.findViewById<RadioButton>(R.id.tm_b)
-            val tm_C =   vi.findViewById<RadioButton>(R.id.tm_c)
-            val tm_D = vi.findViewById<RadioButton>(R.id.tm_d)
-            tm_right_answer.text = "正确答案：" +  ags.getString("tm_answer")
+            tm_answer_right.text = "正确答案：" +  ags.getString("tm_answer")
             tm_answer_desc.text =  ags.getString("tm_answer_desc").replace("<br/>","")
-            tm_A.text = ags.getString("tm_a").replace("<br/>","")
-            tm_B.text =  ags.getString("tm_b").replace("<br/>","")
-            tm_C.text = ags.getString("tm_c").replace("<br/>","")
-            tm_D.text = ags.getString("tm_d").replace("<br/>","")
-
-           //设置单选图片
-            getImg().setImg(tm_A).setImg(tm_B).setImg(tm_C).setImg(tm_D)
 
 
             val id = ags.getString("tm_id")//获取id
@@ -123,40 +106,27 @@ class fg_center_tm_fg:Fragment(){
                     dia.setTitle("添加收藏?").setMessage("稍后可以在我的收藏页面查看该题目")
                             .setPositiveButton("确认"){
                                 _,_ ->
-
                                 val res =  temSql.wen_update(db,"like",id)
-                                if(res == 0){
-                                    Toast.makeText(activity,"收藏失败:$id:res:$res",Toast.LENGTH_SHORT).show()
-                                }else{
-                                    Toast.makeText(activity,"收藏完成",Toast.LENGTH_SHORT).show()
-
-                                }
+                                if(res != 0) iwhToast("收藏完成") else iwhToast("收藏失败！")
 
                             }.setNegativeButton("取消",null).create().show()
                 }
             }else if(fab_type == "delete"){
                 my_like_btn.setImageResource(R.drawable.my_delete)
                 my_like_btn.setOnClickListener{
-                    val temSql = mySql(activity,"glx",1)
-                    val db = temSql.writableDatabase
                     val res =  temSql.wen_update(db,"delete",id)
                     if(res == 0){
                         Toast.makeText(activity,"移除失败:$id,res:$res",Toast.LENGTH_SHORT).show()
                     }else{
                          Toast.makeText(activity,"移除完成",Toast.LENGTH_SHORT).show()
+                        //调用接口方法！！
                         mcallbacks!!.onRemove(position)
                     }
                 }
             }
-
-            val tm_select_group = vi.findViewById<RadioGroup>(R.id.tm_select_group)//获取单选组
-            val tm_answer_btn = vi.findViewById<Switch>(R.id.tm_answer_btn)//获取查看解析按钮
-            val tm_answer_box = vi.findViewById<LinearLayout>(R.id.tm_answer_box)//解析区
-            val Tos = fun(str:String){
-                Toast.makeText(activity, str, Toast.LENGTH_LONG).show()
-                tm_answer_btn.isChecked = true
-            }
+            //解析区
             tm_answer_box.visibility = View.GONE
+            //获取查看解析按钮
             tm_answer_btn.setOnClickListener{
                 if(tm_answer_box.visibility == View.GONE){
                     tm_answer_box.visibility = View.VISIBLE
@@ -175,6 +145,7 @@ class fg_center_tm_fg:Fragment(){
                 return true
 
             }
+            //获取单选组
             tm_select_group.setOnCheckedChangeListener{
               _,checkedId ->
                 var tmFlag = false
@@ -207,7 +178,8 @@ class fg_center_tm_fg:Fragment(){
                 } else{
                     iwhToast("回答正确！", Gravity.BOTTOM)
                 }
-                //tm_answer_btn.isChecked = true
+                //是否自动打开解析！
+                // tm_answer_btn.isChecked = true
                // tm_answer_box.visibility = View.VISIBLE
 
             }
@@ -222,6 +194,17 @@ class fg_center_tm_fg:Fragment(){
         super.onAttach(context)
         mcallbacks = context
 
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        val ags = arguments
+        super.onViewCreated(view, savedInstanceState)
+        tm_a.text = ags.getString("tm_a").replace("<br/>","")
+        tm_b.text =  ags.getString("tm_b").replace("<br/>","")
+        tm_c.text = ags.getString("tm_c").replace("<br/>","")
+        tm_d.text = ags.getString("tm_d").replace("<br/>","")
+        //设置单选图片
+        getImg().setImg(tm_a).setImg(tm_b).setImg(tm_c).setImg(tm_d)
     }
 
 

@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_fg_center_tm.*
 
 class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {
     override fun onRemove(position:Int) {
-        Log.d("callback:",position.toString())
+        //Log.d("callback:",position.toString())
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

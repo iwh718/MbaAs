@@ -8,6 +8,12 @@
     <string name="action_settings">Settings</string>
     <string name="left_list_item0">公共基础</string>
     <string name="left_list_item1">Word教程</string>
+    <string name="upDate">更新了:\n\n
+    1.修复题目中选项过长，遮住解析的bug\n\n
+    2.增加搜索题目功能 \n\n
+    3.增加视频教程 \n\n
+    4.公共基础部分完成前三个章节知识导入 \n\n
+    2019.01.20</string>
     <string name="left_list_item2">Excel教程</string>
     <string name="left_list_item3">PowerPoint教程</string>
     <string name="left_list_item4">考试大纲</string>

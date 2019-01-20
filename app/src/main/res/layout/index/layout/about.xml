@@ -49,11 +49,12 @@
         android:layout_height="wrap_content"
         android:text="努力不够的话，就加倍努力。2018.11.27"/>
     <TextView
+        android:id="@+id/likeIwh"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="本应用开源代码：GitHub：xxx"/>
+        android:text="支持iwh"/>
     <TextView
         android:layout_margin="10dp"
         android:layout_width="match_parent"
