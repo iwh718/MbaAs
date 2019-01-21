@@ -84,7 +84,7 @@ class fg_center_tm_fg:Fragment(){
                 val tm_img_path = "(?<=@##)[\\s\\S]*?(?=[\$][\$]@)".toRegex().find(tm_content.text.toString())?.value
                 Log.d("@@","$tm_img_path")
                 tm_img_path?.let {
-                    iwhToast(it)
+                   // iwhToast(it)
                     val tm_img_res = resources.assets.open("ms_imgs/$it")
                     val bitmap = BitmapFactory.decodeStream(tm_img_res)
                     tm_img_res.close()

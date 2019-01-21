@@ -1,30 +1,24 @@
 package com.simplewen.win0
 
-
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.didikee.donate.AlipayDonate
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.CardView
 import android.support.v7.widget.SearchView
-import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import com.simplewen.win0.center.iwh_fg_center
 import com.simplewen.win0.left.iwh_fg_left
 import com.simplewen.win0.right.iwh_fg_right
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
-
 class MainActivity : AppCompatActivity(){
 
 
@@ -34,10 +28,11 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        if(iwhDataOperator.getSHP("versionFlag","version",0) == 0){
+
+        if(iwhDataOperator.getSHP("versionFlag","version",0) == 1){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",1,"version")
+            iwhDataOperator.setSHP("versionFlag",2,"version")
         }
         val list_fg = arrayListOf<Fragment>()
         ArrayList<Fragment>().addNew(iwh_fg_left(),list_fg).addNew(iwh_fg_center(),list_fg).addNew(iwh_fg_right(),list_fg)
@@ -45,11 +40,14 @@ class MainActivity : AppCompatActivity(){
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage)
         val iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
         iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
-        iwh_tab.setSelectedTabIndicatorColor(Color.WHITE)//tab下划线颜色
-        iwh_tab.setTabTextColors(Color.WHITE,Color.WHITE)
-        iwh_tab.addTab(iwh_tab.newTab().setText("基础理论与操作题"))
-        iwh_tab.addTab(iwh_tab.newTab().setText("选择题库"))
-        iwh_tab.addTab(iwh_tab.newTab().setText("我的"))
+        with(iwh_tab){
+           setSelectedTabIndicatorColor(Color.WHITE)//tab下划线颜色
+           setTabTextColors(Color.WHITE,Color.WHITE)
+           addTab(this.newTab().setText("基础理论与操作题"))
+           addTab(this.newTab().setText("选择题库"))
+           addTab(this.newTab().setText("我的"))
+        }
+        with(iwh_tab,{ })
         iwh_tab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 iwh_tab.getTabAt(tab.position)?.select()
@@ -95,19 +93,10 @@ class MainActivity : AppCompatActivity(){
 
         fab.setOnClickListener {
            val dia = AlertDialog.Builder(this@MainActivity)
-            dia.setIcon(R.drawable.fab_bg)
-                    .setTitle("欢迎你加入我们")
-                    .setMessage("群号：726619838")
-                    .setPositiveButton("确认"){
-                        _,_ ->
-                        //iwhJoinQQ()
-                        iwhToast("你没事和我聊天不行吗！！")
-                    }
-                    .setNegativeButton("不了"){_,_ ->}
-                    .create().show()
-
+            dia.setIcon(R.drawable.fab_bg).setTitle("欢迎你加入我们").setMessage("群号：959281938")
+                    .setPositiveButton("确认"){ _,_ ->
+                        iwhJoinQQ() }.setNegativeButton("不了"){_,_ ->}.create().show()
         }
-
     }
 
     override fun onBackPressed() {
@@ -133,8 +122,26 @@ class MainActivity : AppCompatActivity(){
             }
             R.id.action_about -> {
                 val ab = layoutInflater.inflate(R.layout.about,null)
-                val about_dia = AlertDialog.Builder(this@MainActivity)
-                about_dia.setView(ab).create().show()
+                ab.findViewById<TextView>(R.id.likeIwh).setOnClickListener{
+                    AlertDialog.Builder(this@MainActivity)
+                            .setTitle("支付宝捐赠iwh")
+                            .setMessage("来鼓励开发者更好的改进应用！")
+                            .setNegativeButton("下次吧",null)
+                            .setPositiveButton("捐赠"){
+                                _,_ ->
+                                val payCode="FKX03272QHJKIU7YQ2VS68"
+                                val hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(this)
+                                if (hasInstalledAlipayClient) {
+                                    AlipayDonate.startAlipayClient(this, payCode)
+                                    iwhToast("感谢您的支持！")
+                                }else{
+                                    iwhToast("您未安装支付宝哦！")
+                                }
+
+                            }.create().show()
+                }
+               AlertDialog.Builder(this@MainActivity)
+                .setView(ab).create().show()
             }
         }
         return true

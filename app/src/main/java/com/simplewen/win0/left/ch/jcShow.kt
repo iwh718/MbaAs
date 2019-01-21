@@ -24,11 +24,11 @@ class jcShow : AppCompatActivity() {
         val jcWeb = findViewById<WebView>(R.id.jcWebView)
         jcWeb.webViewClient = object:WebViewClient(){
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                iwhToast("加载出错，请稍后再试！")
+               // iwhToast("加载出错，请稍后再试！")
             }
 
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
-                iwhToast("加载出错，请稍后再试！")
+              //  iwhToast("加载出错，请稍后再试！")
             }
         }
 
@@ -41,7 +41,7 @@ class jcShow : AppCompatActivity() {
         routeKey?.let {
             jcWeb.loadDataWithBaseURL(null,null,"text/html", "utf-8", null)
             jcWeb.loadUrl("file:///android_asset/local_html/${routeKey}")
-            iwhToast("加载：$routeKey")
+           // iwhToast("加载：$routeKey")
         }
     }
 

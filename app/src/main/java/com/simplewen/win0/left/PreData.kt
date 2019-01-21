@@ -14,9 +14,9 @@ import com.simplewen.win0.iwhToast
        val jcC = arrayOf(
              arrayOf("算法","数据结构的基本概念","线性表与存储结构","栈和队列","线性链表","树与二叉树","查找技术","排序技术"),
              arrayOf("程序设计方法与风格"),
-             arrayOf("基本概念","结构化分析方法","结构化设计方法","软件测试","软件调试"),
-             arrayOf("基本概念","数据模型","关系代数","数据库设计与管理"))
-       val jcItems2 = arrayOf("1.概述", "2.信息得表述与存储", "3.硬件系统", "4.软件系统", "5.多媒体", "6.病毒及防护", "7.Internet使用")
+             arrayOf("软件工程基础"),
+             arrayOf("数据库基础"))
+       val jcItems2 = arrayOf("计算机基础")
 
        val chTitle = arrayListOf(
                mapOf("chNum" to 0,"title" to "Word相关练习"),
@@ -24,13 +24,13 @@ import com.simplewen.win0.iwhToast
                mapOf("chNum" to 2,"title" to "PowerPoint相关练习"))
 
        //存储web教程链接,word,excel,ppt
-       val jcWordUrls = arrayListOf("file://www.borebooks.top/MAS/jcs/iwhWordJc.html",
+       val jcWordUrls = arrayListOf("file:///android_asset/local_html/word",
                "https://www.borebooks.top/MAS/jcs/iwhWordJc.html",
                "file://www.borebooks.top/MAS/jcs/iwhWordJc.html")
-       val jcExcelUrls = arrayListOf("file://www.borebooks.top/MAS/jcs/iwhExcelJc.html",
+       val jcExcelUrls = arrayListOf("file:///android_asset/local_html/excel",
                "https://www.borebooks.top/MAS/jcs/iwhExcelJc.html",
                "file://www.borebooks.top/MAS/jcs/iwhExcelJc.html")
-       val jcPPTUrls = arrayListOf("file://www.borebooks.top/MAS/jcs/iwhPPTJc.html",
+       val jcPPTUrls = arrayListOf("file:///android_asset/local_html/ppt",
                "https://www.borebooks.top/MAS/jcs/iwhPPTJc.html",
                "file://www.borebooks.top/MAS/jcs/iwhPPTJc.html")
 

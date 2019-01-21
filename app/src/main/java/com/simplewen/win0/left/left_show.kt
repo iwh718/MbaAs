@@ -54,7 +54,7 @@ class left_show : AppCompatActivity() {
             }
             val gintent = intent
             //接收活动数据
-            Log.d("intent", gintent.getIntExtra("key", 0).toString())
+           // Log.d("intent", gintent.getIntExtra("key", 0).toString())
 
             /** nkey 主页面传来的下标，区分类型0：word,1:excel,2:ppt**/
             val nkey = gintent.getIntExtra("key", 10)
