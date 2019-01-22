@@ -51,7 +51,9 @@ class iwh_fg_left: Fragment(){
                             }.setTitle("选择篇章").create().show()
                }
                 R.id.left_list_item5 ->{
-                    iwhToast("大纲暂未上线！")
+                    val intent = Intent(activity,jcShow::class.java)
+                    intent.putExtra("jcKey","大纲")
+                    startActivity(intent)
                 }
                 R.id.left_list_item6 ->{
                     AlertDialog.Builder(activity)

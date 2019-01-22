@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -22,6 +23,7 @@
         </activity>
         <activity
             android:name=".left.left_show"
+            android:configChanges="orientation|keyboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".center.mian_tm"
@@ -38,7 +40,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".left.ch.jcShow"></activity>
+        <activity android:name=".left.ch.jcShow"
+          >
+
+        </activity>
         <activity android:name=".searchTm"></activity>
     </application>
 

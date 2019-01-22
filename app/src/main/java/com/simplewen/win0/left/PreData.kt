@@ -24,15 +24,15 @@ import com.simplewen.win0.iwhToast
                mapOf("chNum" to 2,"title" to "PowerPoint相关练习"))
 
        //存储web教程链接,word,excel,ppt
-       val jcWordUrls = arrayListOf("file:///android_asset/local_html/word",
+       val jcWordUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/word.html",
                "https://www.borebooks.top/MAS/jcs/iwhWordJc.html",
-               "file://www.borebooks.top/MAS/jcs/iwhWordJc.html")
-       val jcExcelUrls = arrayListOf("file:///android_asset/local_html/excel",
+               "https://www.borebooks.top/MAS/local_html/ppt.html")
+       val jcExcelUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/excel.html",
                "https://www.borebooks.top/MAS/jcs/iwhExcelJc.html",
-               "file://www.borebooks.top/MAS/jcs/iwhExcelJc.html")
-       val jcPPTUrls = arrayListOf("file:///android_asset/local_html/ppt",
+               "https://www.borebooks.top/MAS/local_html/ppt.html")
+       val jcPPTUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/ppt.html",
                "https://www.borebooks.top/MAS/jcs/iwhPPTJc.html",
-               "file://www.borebooks.top/MAS/jcs/iwhPPTJc.html")
+               "https://www.borebooks.top/MAS/local_html/ppt.html")
 
        val jcUrls = arrayListOf(jcWordUrls, jcExcelUrls, jcPPTUrls)
 

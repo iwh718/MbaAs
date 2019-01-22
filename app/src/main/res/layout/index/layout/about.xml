@@ -58,7 +58,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="支持开发者"/>
+        android:text="捐赠开发者：支持更好的改进应用"/>
     <TextView
         android:layout_margin="10dp"
         android:layout_width="match_parent"

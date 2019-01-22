@@ -1,5 +1,7 @@
 package com.simplewen.win0.left
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.support.v4.app.Fragment
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -10,12 +12,15 @@ import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 
 
 import android.widget.Toast
 import com.simplewen.win0.R
+import com.simplewen.win0.iwhToast
 import com.simplewen.win0.iwh_view_page_adapter
 import com.simplewen.win0.left.ch.*
+import kotlinx.android.synthetic.main.activity_left_show.*
 
 /**首页左侧知识体系->功能首页->控制Fg输出**/
 class left_show : AppCompatActivity() {
@@ -33,6 +38,16 @@ class left_show : AppCompatActivity() {
         tab.setTabTextColors(Color.WHITE, Color.WHITE)
         tab.setSelectedTabIndicatorColor(Color.parseColor("#185639"))//tab下划线颜色
         tab.isScrollContainer
+        val ori =resources.configuration .orientation //获取屏幕方向
+        if (ori ==  Configuration.ORIENTATION_LANDSCAPE) {
+            //横屏
+            toolbar_left_show.visibility = View.GONE
+            findViewById<TabLayout>(R.id.left_show_tab).visibility = View.GONE
+        } else {
+            //竖屏
+            toolbar_left_show.visibility = View.VISIBLE
+            left_show_tab.visibility  =  View.VISIBLE
+        }
 
         /**添加 tab 面板
          * @param chKey 篇章序号
@@ -102,5 +117,6 @@ class left_show : AppCompatActivity() {
         }
         return true
     }
+
 
 }

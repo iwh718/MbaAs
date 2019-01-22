@@ -29,10 +29,10 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) == 1){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) == 2){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",2,"version")
+            iwhDataOperator.setSHP("versionFlag",3,"version")
         }
         val list_fg = arrayListOf<Fragment>()
         ArrayList<Fragment>().addNew(iwh_fg_left(),list_fg).addNew(iwh_fg_center(),list_fg).addNew(iwh_fg_right(),list_fg)
@@ -123,12 +123,6 @@ class MainActivity : AppCompatActivity(){
             R.id.action_about -> {
                 val ab = layoutInflater.inflate(R.layout.about,null)
                 ab.findViewById<TextView>(R.id.likeIwh).setOnClickListener{
-                    AlertDialog.Builder(this@MainActivity)
-                            .setTitle("支付宝捐赠iwh")
-                            .setMessage("来鼓励开发者更好的改进应用！")
-                            .setNegativeButton("下次吧",null)
-                            .setPositiveButton("捐赠"){
-                                _,_ ->
                                 val payCode="FKX03272QHJKIU7YQ2VS68"
                                 val hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(this)
                                 if (hasInstalledAlipayClient) {
@@ -138,7 +132,6 @@ class MainActivity : AppCompatActivity(){
                                     iwhToast("您未安装支付宝哦！")
                                 }
 
-                            }.create().show()
                 }
                AlertDialog.Builder(this@MainActivity)
                 .setView(ab).create().show()

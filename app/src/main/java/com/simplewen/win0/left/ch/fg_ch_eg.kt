@@ -18,7 +18,7 @@ class fg_ch_eg :Fragment(){
 
         val chKey = arguments.getInt("chKey")
         val sonKey = arguments.getInt("sonKey")
-        iwhToast("sonkey:$sonKey")
+        //iwhToast("sonkey:$sonKey")
 
         var vi = inflater.inflate(R.layout.fg_ch_one,container,false)
 

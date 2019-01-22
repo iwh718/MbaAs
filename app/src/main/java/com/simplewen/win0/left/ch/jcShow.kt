@@ -1,12 +1,14 @@
 package com.simplewen.win0.left.ch
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.view.MenuItem
+import android.view.View
 import android.webkit.*
 import com.simplewen.win0.MainActivity
 import com.simplewen.win0.R
@@ -53,4 +55,6 @@ class jcShow : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }
