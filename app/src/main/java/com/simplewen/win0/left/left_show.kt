@@ -1,6 +1,5 @@
 package com.simplewen.win0.left
 
-import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.support.v4.app.Fragment
 import android.graphics.Color
@@ -10,16 +9,14 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 
 
 import android.widget.Toast
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
 import com.simplewen.win0.iwh_view_page_adapter
-import com.simplewen.win0.left.ch.*
+import com.simplewen.win0.left.jc.*
 import kotlinx.android.synthetic.main.activity_left_show.*
 
 /**首页左侧知识体系->功能首页->控制Fg输出**/

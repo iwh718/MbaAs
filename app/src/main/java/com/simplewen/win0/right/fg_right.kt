@@ -37,7 +37,7 @@ class iwh_fg_right : Fragment() {
         val pr = activity.getSharedPreferences("djs", Context.MODE_PRIVATE)
         val default_quote = pr.getString("quote", "没有什么是一蹴而就的。(点击自定义)")
         val default_time = pr.getString("djs_time", "1548777600000")
-        val default_things = pr.getString("djs_things", "今天（点我)")
+        val default_things = pr.getString("djs_things", "自定义（点我)")
         quote_btn.text = default_quote//设置默认语录
         djs_things.text = default_things //默认事件
         djs_time.text ="${ getDjs(default_time.toString(),now_time.toString())}天"//更新倒计时

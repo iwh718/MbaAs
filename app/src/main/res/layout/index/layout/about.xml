@@ -33,7 +33,7 @@
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="版本：v1.1"/>
+            android:text="体验版本：v1.1"/>
     </LinearLayout>
     <TextView
         android:textAlignment="center"
@@ -41,7 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="作者：IWH "/>
+    <TextView
+        android:layout_margin="10dp"
 
+        android:textAlignment="center"
+        android:id="@+id/toStar"
+        android:layout_width="match_parent"
+        android:text="来GitHub点个Star"
+        android:layout_height="wrap_content" />
     <TextView
         android:textAlignment="center"
         android:layout_margin="10dp"
@@ -58,7 +65,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="捐赠开发者：支持更好的改进应用"/>
+        android:text="捐赠开发者：支持TA更好的改进应用"/>
     <TextView
         android:layout_margin="10dp"
         android:layout_width="match_parent"

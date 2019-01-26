@@ -44,6 +44,6 @@
             android:layout_gravity="bottom|end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="题目均来自互联网收集 2018.11.05"/>
+            android:text="未来可期 2019.01.26"/>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

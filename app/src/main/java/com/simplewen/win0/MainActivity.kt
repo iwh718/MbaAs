@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.didikee.donate.AlipayDonate
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -17,6 +18,7 @@ import android.widget.TextView
 import com.simplewen.win0.center.iwh_fg_center
 import com.simplewen.win0.left.iwh_fg_left
 import com.simplewen.win0.right.iwh_fg_right
+import kotlinx.android.synthetic.main.about.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
 class MainActivity : AppCompatActivity(){
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) == 2){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) < 2){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
             iwhDataOperator.setSHP("versionFlag",3,"version")
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity(){
            addTab(this.newTab().setText("选择题库"))
            addTab(this.newTab().setText("我的"))
         }
-        with(iwh_tab,{ })
+
         iwh_tab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 iwh_tab.getTabAt(tab.position)?.select()
@@ -93,10 +95,12 @@ class MainActivity : AppCompatActivity(){
 
         fab.setOnClickListener {
            val dia = AlertDialog.Builder(this@MainActivity)
-            dia.setIcon(R.drawable.fab_bg).setTitle("欢迎你加入我们").setMessage("群号：959281938")
+            dia.setIcon(R.drawable.fab_bg).setTitle("加入QQ群一起交流！").setMessage("群号：959281938")
                     .setPositiveButton("确认"){ _,_ ->
                         iwhJoinQQ() }.setNegativeButton("不了"){_,_ ->}.create().show()
         }
+
+
     }
 
     override fun onBackPressed() {
@@ -122,6 +126,11 @@ class MainActivity : AppCompatActivity(){
             }
             R.id.action_about -> {
                 val ab = layoutInflater.inflate(R.layout.about,null)
+                ab.findViewById<TextView>(R.id.toStar).setOnClickListener{
+                    val uri = Uri.parse("https://github.com/iwh718/MbaAs")
+                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    startActivity(intent)
+                }
                 ab.findViewById<TextView>(R.id.likeIwh).setOnClickListener{
                                 val payCode="FKX03272QHJKIU7YQ2VS68"
                                 val hasInstalledAlipayClient = AlipayDonate.hasInstalledAlipayClient(this)

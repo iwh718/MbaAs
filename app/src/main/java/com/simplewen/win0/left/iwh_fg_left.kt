@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
-import com.simplewen.win0.left.ch.jcShow
-import kotlinx.android.synthetic.main.left_listview.*
+import com.simplewen.win0.left.jc.jcShow
 
 class iwh_fg_left: Fragment(){
 
