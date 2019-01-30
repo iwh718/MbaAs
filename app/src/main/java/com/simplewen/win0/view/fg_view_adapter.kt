@@ -1,4 +1,4 @@
-package com.simplewen.win0
+package com.simplewen.win0.view
 import kotlin.collections.arrayListOf
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

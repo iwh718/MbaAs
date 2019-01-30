@@ -2,7 +2,7 @@ package com.simplewen.win0.left
 import android.graphics.Bitmap
 import android.webkit.*
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
+import com.simplewen.win0.app.iwhToast
 
 /**静态类 存储该项目的各类静态数据
  * author：iwh

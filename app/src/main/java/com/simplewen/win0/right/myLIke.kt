@@ -14,8 +14,8 @@ import android.widget.Toast
 import com.simplewen.win0.R
 import com.simplewen.win0.center.fg_center_tm_fg
 
-import com.simplewen.win0.iwh_view_page_adapter
-import com.simplewen.win0.mySql
+import com.simplewen.win0.view.iwh_view_page_adapter
+import com.simplewen.win0.modal.mySql
 import kotlinx.android.synthetic.main.activity_my_like.*
 
 /**我的收藏**/
@@ -28,11 +28,11 @@ class myLIke : AppCompatActivity(),fg_center_tm_fg.Callbacks {
         setSupportActionBar(toolbar)
        toolbar.setTitleTextColor(Color.WHITE)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        var temSql = mySql(this@myLIke,"glx",1)
+        var temSql = mySql(this@myLIke, "glx", 1)
         var db = temSql.writableDatabase
         var sjs = temSql.sjs//存放题目数据集合
         val list_fg = arrayListOf<Fragment>()
-        var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
+        var iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager, list_fg)
         val title = findViewById<TextView>(R.id.toobar_tm_title)
         val my_flag = intent.getStringExtra("my_flag")
         if(my_flag == "like"){

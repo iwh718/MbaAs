@@ -1,18 +1,18 @@
-package com.simplewen.win0
+package com.simplewen.win0.modal
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Environment
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.Gravity
 import android.widget.Toast
+import com.simplewen.win0.app.App
+import com.simplewen.win0.app.iwhDataOperator
+import com.simplewen.win0.app.iwhToast
 import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
 
 
 class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(context, name, null, version) {
@@ -26,7 +26,16 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
     val mContext = context
     var sjs = arrayListOf<Map<String, Any>>()//存放数据
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        //
+        val file = File(ImportDB.DB_PATH + "/glx")//调用伴生对象
+        if (file.exists()){
+            //内部数据库存在，开始导入外部
+            if(iwhDataOperator.getSHP("dbFlag","dbFlag","") == "1"){
+                //iwhToast("数据库已经存在！")
+            }else{
+                val inDb = ImportDB(App.getContext())
+                if(inDb.copyDatabase()) iwhDataOperator.setSHP("dbFlag","1","dbFlag") else iwhToast("复制失败！", Gravity.BOTTOM)
+            }
+        }
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

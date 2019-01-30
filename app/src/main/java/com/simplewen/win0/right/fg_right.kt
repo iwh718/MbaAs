@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +15,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
-import com.simplewen.win0.formatTime
-import com.simplewen.win0.getDjs
-import com.simplewen.win0.iwhToast
+import com.simplewen.win0.app.getDjs
+import com.simplewen.win0.app.iwhToast
 import java.lang.Exception
 import java.util.*
 import java.text.SimpleDateFormat
@@ -40,7 +38,7 @@ class iwh_fg_right : Fragment() {
         val default_things = pr.getString("djs_things", "自定义（点我)")
         quote_btn.text = default_quote//设置默认语录
         djs_things.text = default_things //默认事件
-        djs_time.text ="${ getDjs(default_time.toString(),now_time.toString())}天"//更新倒计时
+        djs_time.text ="${getDjs(default_time.toString(), now_time.toString())}天"//更新倒计时
         val myError = vi.findViewById<TextView>(R.id.fg_right_my_error)
         myLike.setOnClickListener {
 

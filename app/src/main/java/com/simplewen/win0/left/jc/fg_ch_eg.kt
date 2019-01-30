@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.webkit.*
 import com.simplewen.win0.R
 import com.simplewen.win0.left.PreData
-import com.simplewen.win0.iwhToast
+import com.simplewen.win0.app.iwhToast
 
 /**章节知识的Fragment重写**/
 class fg_ch_eg :Fragment(){

@@ -1,7 +1,6 @@
 package com.simplewen.win0.center
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -13,15 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.simplewen.win0.R
-import com.simplewen.win0.mySql
-import com.simplewen.win0.iwhToast
+import com.simplewen.win0.modal.mySql
+import com.simplewen.win0.app.iwhToast
 import java.lang.IllegalStateException
 import android.graphics.BitmapFactory
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import com.simplewen.win0.App
 import kotlinx.android.synthetic.main.fg_center_tm.*
-import java.io.IOException
 import java.lang.Exception
 
 
@@ -64,7 +60,7 @@ class fg_center_tm_fg:Fragment(){
             val ags = arguments
             val position = arguments.getInt("position")//获取FG下标
             val fab_type = arguments.getString("fab_type")
-            val temSql = mySql(activity,"glx",1)//初始化数据库链接
+            val temSql = mySql(activity, "glx", 1)//初始化数据库链接
             val db = temSql.writableDatabase//获取读写对象
             val vi = inflater?.inflate(R.layout.fg_center_tm,container,false)
             val tm_img = vi!!.findViewById<ImageView>(R.id.tm_img)//题目图片

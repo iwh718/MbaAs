@@ -13,9 +13,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
-import com.simplewen.win0.iwh_view_page_adapter
-import com.simplewen.win0.mySql
+import com.simplewen.win0.view.iwh_view_page_adapter
+import com.simplewen.win0.modal.mySql
 import kotlinx.android.synthetic.main.activity_fg_center_tm.*
 
 class mian_tm : AppCompatActivity(),fg_center_tm_fg.Callbacks {

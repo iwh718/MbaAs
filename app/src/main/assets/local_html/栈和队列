@@ -15,13 +15,8 @@ p{
 
 </style>
 </head>
-<body style="background:#CDB38B; ">
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+<body style="background:#CDB38B;margin-bottom:100px ">
+
 <p>
     <strong>1.4 栈和队列</strong>
 </p>

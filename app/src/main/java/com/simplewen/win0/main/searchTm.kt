@@ -1,4 +1,4 @@
-package com.simplewen.win0
+package com.simplewen.win0.main
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.support.constraint.Constraints
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.*
+import com.simplewen.win0.R
+import com.simplewen.win0.app.iwhToast
+import com.simplewen.win0.modal.mySql
 import kotlinx.android.synthetic.main.activity_search_tm.*
-import kotlinx.android.synthetic.main.fg_center_tm.*
 
 class searchTm : AppCompatActivity() {
 

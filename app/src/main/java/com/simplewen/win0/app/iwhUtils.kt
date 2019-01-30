@@ -1,4 +1,4 @@
-package com.simplewen.win0
+package com.simplewen.win0.app
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.simplewen.win0.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -137,7 +138,7 @@ class iwhDataOperator {
          * @param shpName 指定文件
          * @return 返回伴生对象
          * **/
-        fun <T> setSHP(saveKey: String, saveText: T, shpName: String): iwhDataOperator.Companion {
+        fun <T> setSHP(saveKey: String, saveText: T, shpName: String): Companion {
             //打开指定文件
             val SHP_Text = App.getContext().getSharedPreferences(shpName, Activity.MODE_PRIVATE)
             when (saveText) {
@@ -155,7 +156,7 @@ class iwhDataOperator {
 
             }
             //链式调用
-            return iwhDataOperator.Companion
+            return Companion
         }
 
         /**获取私有数据

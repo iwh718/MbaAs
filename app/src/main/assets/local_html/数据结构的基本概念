@@ -15,7 +15,7 @@ p{
 
 </style>
 </head>
-<body style="background:#CDB38B; ">
+<body style="background:#CDB38B;margin-bottom:100px ">
 	<h1>第1章 数据结构与算法</h1>
 	<h2>1.2 数据结构的基本概念</h2>
 	<h3>1.2.1 什么是数据结构</h3>

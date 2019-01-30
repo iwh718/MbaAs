@@ -6,13 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body style="background:#CDB38B; ">
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+<body style="background:#CDB38B;margin-bottom:100px ">
+
 <p>
     <strong>1.6 树与二叉树</strong>
 </p>
@@ -25,28 +20,13 @@
 <p>
     &nbsp; &nbsp; 例如，一个家族中的族谱关系如下：A有后代B、C；B有后代D、E、F；C有后代G；F有后代H、I。则这个家族的成员关系可用图1-21所示的一个倒置的树来描述。&nbsp;
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    
 
-    <br> <br>
+<p>
+
    图1-21 树形结构&nbsp;
     <img src="file:///android_asset/local_html/local_imgs/T1-21.jpg" style="width:100%;border-radius: 10px;">
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+
 <p>
     &nbsp; &nbsp; 在用图形表示数据结构中元素之间的前后件关系时，一般使用有向箭头。但在树形结构中，由于前后件关系非常清楚，即使去掉箭头也不会引起歧义，因此，图1-21中使用无向线段代表数据元素之间的逻辑关系（即前后件关系）。
 </p>
@@ -89,15 +69,7 @@
 <p>
     &nbsp; &nbsp; 二叉树是一个有限的结点集合，该集合或者为空，或者由一个根结点及其两棵互不相交的左、右二叉子树所组成，如图1-22所示。&nbsp;
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+
 <p>
 
 
@@ -142,15 +114,7 @@
     &nbsp; &nbsp; 图1-23（a）、（b）所示分别是深度3和4的满二叉树。&nbsp;
 
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+
 <p>
     
           <br> <br>
@@ -178,15 +142,7 @@
 <p>
     图1-24（a）所示为深度为3的3棵完全二叉树，图1-24（b）所示为深度为4的一棵完全二叉树。&nbsp;
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+
 <p>
    
           <br> <br>
@@ -194,12 +150,7 @@
 
     <img src="file:///android_asset/local_html/local_imgs/T1-24.jpg" style="width:100%;border-radius: 10px;">
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
+
 <p>
     &nbsp; &nbsp; 对于完全二叉树来说，叶子结点只可能在层次最大的两层上出现；对于任何一个结点，若其右分支下的子孙结点的最大层次为m，则其左分支下的子孙结点的最大层次或为m或为m+1。
 </p>
@@ -305,15 +256,7 @@
 <p>
     右子结点，即右指针域。二叉树的存储结点如图1-25所示。&nbsp;
 </p>
-<p>
-    <br/>
-</p>
-<p>
-    <br/>
-</p>
-<p>
-    &nbsp;
-</p>
+
 <p>
  
      <br> <br>
@@ -333,9 +276,7 @@
 <p>
     &nbsp; &nbsp; 对于满二叉树与完全二叉树可以按层次进行顺序存储。&nbsp;
 </p>
-<p>
-    <br/>
-</p>
+
 <p>
     1.6.4 二叉树的遍历
 </p>

@@ -15,7 +15,7 @@ import android.view.View
 
 import android.widget.Toast
 import com.simplewen.win0.R
-import com.simplewen.win0.iwh_view_page_adapter
+import com.simplewen.win0.view.iwh_view_page_adapter
 import com.simplewen.win0.left.jc.*
 import kotlinx.android.synthetic.main.activity_left_show.*
 

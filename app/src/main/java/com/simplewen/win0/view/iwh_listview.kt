@@ -1,4 +1,4 @@
-package com.simplewen.win0
+package com.simplewen.win0.view
 
 import android.content.Context
 import android.util.AttributeSet

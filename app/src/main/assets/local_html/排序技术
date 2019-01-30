@@ -15,7 +15,7 @@ p{
 
 </style>
 </head>
-<body style="background:#CDB38B; ">
+<body style="background:#CDB38B;margin-bottom:100px ">
 	<h1>第1章 数据结构与算法</h1>
 	<h2>1.8 排序技术</h2>
 	<h3>1.8.1 交换类排序法</h3>

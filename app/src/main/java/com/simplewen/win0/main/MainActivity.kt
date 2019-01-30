@@ -1,4 +1,4 @@
-package com.simplewen.win0
+package com.simplewen.win0.main
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -15,32 +15,39 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.simplewen.win0.R
+import com.simplewen.win0.app.addNew
+import com.simplewen.win0.app.iwhDataOperator
+import com.simplewen.win0.app.iwhJoinQQ
+import com.simplewen.win0.app.iwhToast
 import com.simplewen.win0.center.iwh_fg_center
 import com.simplewen.win0.left.iwh_fg_left
+import com.simplewen.win0.modal.ImportDB
+import com.simplewen.win0.modal.mySql
 import com.simplewen.win0.right.iwh_fg_right
-import kotlinx.android.synthetic.main.about.*
+import com.simplewen.win0.view.iwh_view_page_adapter
 import kotlinx.android.synthetic.main.app_bar_main.*
 import java.io.File
 class MainActivity : AppCompatActivity(){
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val temSql = mySql(this@MainActivity,"glx",1)//创建数据
+        val temSql = mySql(this@MainActivity, "glx", 1)//创建数据
         temSql.writableDatabase
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) < 2){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) < 3){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",3,"version")
+            iwhDataOperator.setSHP("versionFlag",4,"version")
         }
         val list_fg = arrayListOf<Fragment>()
         ArrayList<Fragment>().addNew(iwh_fg_left(),list_fg).addNew(iwh_fg_center(),list_fg).addNew(iwh_fg_right(),list_fg)
         val  iwh_tab = findViewById<TabLayout>(R.id.tab)
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage)
-        val iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager,list_fg)
+        val iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager, list_fg)
         iwh_viewPage.adapter = iwh_view_page_adapter//设置viewpage的adapter
         with(iwh_tab){
            setSelectedTabIndicatorColor(Color.WHITE)//tab下划线颜色
@@ -63,7 +70,7 @@ class MainActivity : AppCompatActivity(){
         indexSearchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val searchIntent = Intent(this@MainActivity,searchTm::class.java)
+                val searchIntent = Intent(this@MainActivity, searchTm::class.java)
                 if(query!!.isNotEmpty())   searchIntent.putExtra("searchKey",query) else {
                     iwhToast("不可以为空！")
                     return  false
@@ -89,7 +96,7 @@ class MainActivity : AppCompatActivity(){
                 //iwhToast("数据库已经存在！")
                  }else{
                 val inDb = ImportDB(this@MainActivity)
-                if(inDb.copyDatabase())iwhDataOperator.setSHP("dbFlag","1","dbFlag") else  iwhToast("复制失败！", Gravity.BOTTOM)
+                if(inDb.copyDatabase()) iwhDataOperator.setSHP("dbFlag","1","dbFlag") else iwhToast("复制失败！", Gravity.BOTTOM)
             }
         }
 
@@ -97,7 +104,8 @@ class MainActivity : AppCompatActivity(){
            val dia = AlertDialog.Builder(this@MainActivity)
             dia.setIcon(R.drawable.fab_bg).setTitle("加入QQ群一起交流！").setMessage("群号：959281938")
                     .setPositiveButton("确认"){ _,_ ->
-                        iwhJoinQQ() }.setNegativeButton("不了"){_,_ ->}.create().show()
+                        iwhJoinQQ()
+                    }.setNegativeButton("不了"){_,_ ->}.create().show()
         }
 
 

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.webkit.*
 import com.simplewen.win0.R
-import com.simplewen.win0.iwhToast
+import com.simplewen.win0.app.iwhToast
 import kotlinx.android.synthetic.main.activity_jc_show.*
 /**本地html输出**/
 class jcShow : AppCompatActivity() {

@@ -1,12 +1,10 @@
-package com.simplewen.win0
+package com.simplewen.win0.modal
 
 import android.content.Context
 import android.os.Environment
-import android.os.Environment.getDataDirectory
 import android.util.Log
-import java.io.FileNotFoundException
 import java.io.FileOutputStream
-import java.io.IOException
+
 /**导入数据库**/
 class ImportDB internal constructor(private val context: Context) {
     private val BUFFER_SIZE =10000

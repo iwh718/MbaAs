@@ -6,6 +6,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.simplewen.win0.main.MainActivity
 import java.util.*
 
 class login : AppCompatActivity() {
@@ -25,7 +26,7 @@ class login : AppCompatActivity() {
 
         Timer().schedule(object :TimerTask(){
             override fun run() {
-                startActivity(Intent(this@login,MainActivity::class.java))
+                startActivity(Intent(this@login, MainActivity::class.java))
             }
         },3000)
     }

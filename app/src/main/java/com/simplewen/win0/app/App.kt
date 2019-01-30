@@ -1,6 +1,5 @@
-package com.simplewen.win0
+package com.simplewen.win0.app
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
 
