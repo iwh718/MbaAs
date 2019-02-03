@@ -16,6 +16,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import com.simplewen.win0.R
+import com.simplewen.win0.R.id.toolbar
 import com.simplewen.win0.app.addNew
 import com.simplewen.win0.app.iwhDataOperator
 import com.simplewen.win0.app.iwhJoinQQ
@@ -38,10 +39,10 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) < 3){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) < 4){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",4,"version")
+            iwhDataOperator.setSHP("versionFlag",5,"version")
         }
         val list_fg = arrayListOf<Fragment>()
         ArrayList<Fragment>().addNew(iwh_fg_left(),list_fg).addNew(iwh_fg_center(),list_fg).addNew(iwh_fg_right(),list_fg)
@@ -129,7 +130,7 @@ class MainActivity : AppCompatActivity(){
             {
                 val textIntent = Intent(Intent.ACTION_SEND)
                 textIntent.type = "text/plain"
-                textIntent.putExtra(Intent.EXTRA_TEXT, "Ms-Office助手:https://www.coolapk.com/apk/com.simplewen.win0.wd")
+                textIntent.putExtra(Intent.EXTRA_TEXT, "Ms-Office助手:https://www.coolapk.com/apk/com.simplewen.win0")
                 startActivity(Intent.createChooser(textIntent, "分享Ms助手给小伙伴！"))
             }
             R.id.action_about -> {

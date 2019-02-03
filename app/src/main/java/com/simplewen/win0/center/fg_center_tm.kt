@@ -17,6 +17,7 @@ import com.simplewen.win0.app.iwhToast
 import java.lang.IllegalStateException
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
+import com.simplewen.win0.app.App
 import kotlinx.android.synthetic.main.fg_center_tm.*
 import java.lang.Exception
 
@@ -28,7 +29,9 @@ import java.lang.Exception
 class fg_center_tm_fg:Fragment(){
     interface Callbacks{
         fun onRemove(position:Int)
+
     }
+
         private  var mcallbacks:Callbacks?= null//回调
         /**获取题目内部图片**/
         inner class getImg{
@@ -58,6 +61,7 @@ class fg_center_tm_fg:Fragment(){
 
         override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val ags = arguments
+
             val position = arguments.getInt("position")//获取FG下标
             val fab_type = arguments.getString("fab_type")
             val temSql = mySql(activity, "glx", 1)//初始化数据库链接
@@ -70,6 +74,8 @@ class fg_center_tm_fg:Fragment(){
             val tm_answer_right = vi.findViewById<TextView>(R.id.tm_answer_right)
             val tm_select_group = vi.findViewById<RadioGroup>(R.id.tm_select_group)
             val tm_answer_btn = vi.findViewById<Switch>(R.id.tm_answer_btn)
+
+
             tm_content.text =  if(position == 19) {
                 "最后一题：${ags.getString("tm_content").replace("<br/>", "")}"
             }else {
@@ -78,9 +84,7 @@ class fg_center_tm_fg:Fragment(){
 
                 //设置题目图片
                 val tm_img_path = "(?<=@##)[\\s\\S]*?(?=[\$][\$]@)".toRegex().find(tm_content.text.toString())?.value
-                Log.d("@@","$tm_img_path")
                 tm_img_path?.let {
-                   // iwhToast(it)
                     val tm_img_res = resources.assets.open("ms_imgs/$it")
                     val bitmap = BitmapFactory.decodeStream(tm_img_res)
                     tm_img_res.close()
@@ -120,11 +124,18 @@ class fg_center_tm_fg:Fragment(){
                     }
                 }
             }
-            //解析区
-            tm_answer_box.visibility = View.GONE
+            if(App._bt_flag == "1"){
+                tm_answer_btn.visibility = View.GONE
+                tm_answer_btn.isChecked = true
+                tm_answer_box.visibility = View.VISIBLE
+            }else{
+                tm_answer_btn.isChecked = false
+                tm_answer_box.visibility = View.GONE
+                tm_answer_btn.visibility = View.VISIBLE
+            }
             //获取查看解析按钮
             tm_answer_btn.setOnClickListener{
-                if(tm_answer_box.visibility == View.GONE){
+                if(tm_answer_btn.isChecked){
                     tm_answer_box.visibility = View.VISIBLE
                 }else{
                     tm_answer_box.visibility = View.GONE
@@ -132,7 +143,7 @@ class fg_center_tm_fg:Fragment(){
             }
             fun my_error():Boolean{
                 //自动保存错题到数据库
-                iwhToast("回答错误！", Gravity.BOTTOM, R.color.warn)
+                iwhToast("回答错误！!", Gravity.BOTTOM, R.color.warn)
                 val res =  temSql.wen_update(db,"error",id)
                 if(res ==0 ){
                     iwhToast("添加失败！", Gravity.BOTTOM, R.color.warn)
@@ -175,10 +186,11 @@ class fg_center_tm_fg:Fragment(){
                     iwhToast("回答正确！", Gravity.BOTTOM)
                 }
                 //是否自动打开解析！
-                // tm_answer_btn.isChecked = true
-               // tm_answer_box.visibility = View.VISIBLE
+                 tm_answer_btn.isChecked = true
+                tm_answer_box.visibility = View.VISIBLE
 
             }
+
 
             return vi
         }
@@ -201,6 +213,8 @@ class fg_center_tm_fg:Fragment(){
         tm_d.text = ags.getString("tm_d").replace("<br/>","")
         //设置单选图片
         getImg().setImg(tm_a).setImg(tm_b).setImg(tm_c).setImg(tm_d)
+
+
     }
 
 
