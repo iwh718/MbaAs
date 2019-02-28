@@ -12,10 +12,11 @@ class ImportDB internal constructor(private val context: Context) {
         val DB_NAME = "glx" //保存的数据库文件名
         val PACKAGE_NAME = "com.simplewen.win0"//工程包名
         val DB_PATH = ("/data${Environment.getDataDirectory().absolutePath}/$PACKAGE_NAME/databases")  //在手机里存放数据库的位置
+
     }
     fun copyDatabase():Boolean{
         val dbfile = "$DB_PATH/$DB_NAME"
-        Log.d("look",dbfile)
+        Log.d("@@look dbfile",dbfile)
         try {
             //执行数据库导入
             val db = this.context.resources.assets.open(DB_NAME) //欲导入的数据库
@@ -28,8 +29,8 @@ class ImportDB internal constructor(private val context: Context) {
             fos.close()//关闭输出流
             db.close()//关闭数据库
             return true
-        }catch (e: Throwable) {
-            Log.d("look",e.toString())
+        }catch (e: Exception) {
+            Log.d("@@look-error",e.toString())
             e.printStackTrace()
             return false
         }

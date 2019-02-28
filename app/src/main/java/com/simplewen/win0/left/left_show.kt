@@ -16,7 +16,7 @@ import android.view.View
 import android.widget.Toast
 import com.simplewen.win0.R
 import com.simplewen.win0.view.iwh_view_page_adapter
-import com.simplewen.win0.left.jc.*
+import com.simplewen.win0.left.view.*
 import kotlinx.android.synthetic.main.activity_left_show.*
 
 /**首页左侧知识体系->功能首页->控制Fg输出**/
@@ -50,23 +50,25 @@ class left_show : AppCompatActivity() {
          * @param chKey 篇章序号
          * **/
         fun addTab(chKey:Int) {
-                        for (ii in 0..2) {
-                            val fg = fg_ch_eg()
-                            val args = Bundle()
-                            args.putInt("chKey",chKey)
-                            args.putInt("sonKey",ii)
-                            fg.arguments = args
-                            fg_list.add(ii, fg)
-                        }
-
+            //添加左侧教程
+            val fg = fg_ch_eg()
+            val args = Bundle()
+            args.putInt("chKey",chKey)
+            fg.arguments = args
+            //添加右侧视频
+            val fg2 = fg_ch_play_list()
+            val args2 = Bundle()
+            args2.putInt("chType",chKey)
+            fg2.arguments = args2
+            fg_list.add(0, fg)
+            fg_list.add(1,fg2)
+            //设置tab标签
             tab.addTab(tab.newTab().setText("基础知识"))
             tab.addTab(tab.newTab().setText("视频教程"))
-            tab.addTab(tab.newTab().setText("真考例题"))
 
             }
             val gintent = intent
-            //接收活动数据
-           // Log.d("intent", gintent.getIntExtra("key", 0).toString())
+
 
             /** nkey 主页面传来的下标，区分类型0：word,1:excel,2:ppt**/
             val nkey = gintent.getIntExtra("key", 10)

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ import java.text.SimpleDateFormat
 
 class iwh_fg_right : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        Log.d("@@@","右侧启动")
         var now_time = System.currentTimeMillis()//现在时间
         val vi = inflater?.inflate(R.layout.fg_right, container, false)
         val myLike = vi!!.findViewById<TextView>(R.id.fg_right_my_like)

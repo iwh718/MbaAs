@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -40,11 +39,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".left.jc.jcShow"
-          >
-
-        </activity>
-        <activity android:name=".main.searchTm"></activity>
+        <activity android:name=".left.view.jcShow"/>
+        <activity android:name=".main.searchTm" />
+        <activity android:name=".left.PlayVideo"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

@@ -24,24 +24,39 @@ import com.simplewen.win0.app.iwhToast
                mapOf("chNum" to 2,"title" to "PowerPoint相关练习"))
 
        //存储web教程链接,word,excel,ppt
-       val jcWordUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/word.html",
-               "https://www.borebooks.top/MAS/jcs/iwhWordJc.html",
+       val jcVideoBaseUrl = "https://www.borebooks.top/MAS/jcs/videos/"
+       val jcUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/word.html",
+               "https://www.borebooks.top/MAS/local_html/excel.html",
                "https://www.borebooks.top/MAS/local_html/ppt.html")
-       val jcExcelUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/excel.html",
-               "https://www.borebooks.top/MAS/jcs/iwhExcelJc.html",
-               "https://www.borebooks.top/MAS/local_html/ppt.html")
-       val jcPPTUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/ppt.html",
-               "https://www.borebooks.top/MAS/jcs/iwhPPTJc.html",
-               "https://www.borebooks.top/MAS/local_html/ppt.html")
-
-       val jcUrls = arrayListOf(jcWordUrls, jcExcelUrls, jcPPTUrls)
 
        /**获取章节
         * @param ch 教程类型
         * @param sonKey 获取子项url
         * **/
-       fun getPreUrl(ch:Int = 0,sonKey:Int = 0) = jcUrls[ch][sonKey]
+       fun getPreUrl(ch:Int = 0) = jcUrls[ch]
 
+       /**
+        * 拼接链接
+        * @param base 基础链接
+        * @param num 集数
+        * @param type 类型
+        * @return 返回播放链接
+        */
+       fun getPlayUrl(num:Int,type:String) = "${this.jcVideoBaseUrl}$type$num.mov"
+
+       /**
+        * 获取集数
+        * @param type 分类
+        */
+        fun getNum(type:Int):Int{
+          return  when(type){
+               0 -> 24
+               1-> 27
+               2-> 5
+                else -> 0
+            }
+
+        }
        /**web加载方法
         * @param web webview组件
         * @param urls 链接

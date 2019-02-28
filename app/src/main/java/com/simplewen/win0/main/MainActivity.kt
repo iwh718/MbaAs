@@ -39,13 +39,12 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) < 4){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) <= 7){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",5,"version")
+            iwhDataOperator.setSHP("versionFlag",8,"version")
         }
-        val list_fg = arrayListOf<Fragment>()
-        ArrayList<Fragment>().addNew(iwh_fg_left(),list_fg).addNew(iwh_fg_center(),list_fg).addNew(iwh_fg_right(),list_fg)
+        val list_fg = arrayListOf<Fragment>(iwh_fg_left(),iwh_fg_center(),iwh_fg_right())
         val  iwh_tab = findViewById<TabLayout>(R.id.tab)
         val iwh_viewPage = findViewById<ViewPager>(R.id.viewPage)
         val iwh_view_page_adapter = iwh_view_page_adapter(supportFragmentManager, list_fg)
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity(){
         with(iwh_tab){
            setSelectedTabIndicatorColor(Color.WHITE)//tab下划线颜色
            setTabTextColors(Color.WHITE,Color.WHITE)
-           addTab(this.newTab().setText("基础理论与操作题"))
+           addTab(this.newTab().setText("基础理论与视频"))
            addTab(this.newTab().setText("选择题库"))
            addTab(this.newTab().setText("我的"))
         }
@@ -102,6 +101,8 @@ class MainActivity : AppCompatActivity(){
         }
 
         fab.setOnClickListener {
+           val db =   mySql(this@MainActivity,"glx",1).writableDatabase
+
            val dia = AlertDialog.Builder(this@MainActivity)
             dia.setIcon(R.drawable.fab_bg).setTitle("加入QQ群一起交流！").setMessage("群号：959281938")
                     .setPositiveButton("确认"){ _,_ ->

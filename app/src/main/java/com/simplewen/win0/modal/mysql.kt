@@ -14,14 +14,13 @@ import com.simplewen.win0.app.iwhDataOperator
 import com.simplewen.win0.app.iwhToast
 import java.io.File
 
-
+/**
+ * 数据库操作类
+ */
 class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(context, name, null, version) {
 
-    val Create_ = "Create table sj(id integer primary key autoincrement,name varchar);"//SQL语句
-    val Create_2 = "Create table tm_dx(" +
-            "sj_id integer," +
-            "id integer primary key autoincrement," +
-            "content varchar，" +
+    val Create_ = "Create table sj(_id integer primary key autoincrement,name varchar);"//SQL语句
+    val Create_2 = "Create table tm_dx(sj_id integer,id integer primary key autoincrement,content varchar，" +
             "A varchar,B varchar, C varchar, D varchar,answer_desc varchar,answer char(1),my_sort varchar);"
     val mContext = context
     var sjs = arrayListOf<Map<String, Any>>()//存放数据
@@ -45,7 +44,7 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
             Log.d("dbInit", "")
             Toast.makeText(mContext, "初始化数据库", Toast.LENGTH_SHORT).show()
         } catch (e: NullPointerException) {
-            println(e)
+            Log.d("@@@error:",e.toString())
         }
     }
 
@@ -57,8 +56,7 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
      * @param sj_id 试卷id**/
     fun wen_query(db: SQLiteDatabase, hand: Handler, table_name: String, sort_type: String, sj_id: Int = 1): Boolean {
         this.sjs.clear()
-        var tableName: String = table_name//获取查询的表
-        val sort_type = sort_type//查询类型：全部，错题，收藏。
+        val tableName: String = table_name//获取查询的表
         //var colums  = null
         var selection: String? = null
         when (sort_type) {
@@ -79,29 +77,33 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
                 selection = "content LIKE '%${sort_type}%'"
             }
         }
+       // Log.d("@@@selection:",selection.toString())
         val cursor = db.query(tableName, null, selection, null, null, null, null, null)
 
 
         when (tableName) {
             //查询试卷
             "sj" -> {
+                Log.d("@@@cursor:","------${cursor.moveToFirst()}")
                 if (cursor.moveToFirst()) {
                     do {
                         var temMAp = linkedMapOf<String, Any>()
                         var name = cursor.getString(cursor.getColumnIndex("name"))
-                        var id = cursor.getString(cursor.getColumnIndex("id"))
+                        var id = cursor.getString(cursor.getColumnIndex("_id"))
                         temMAp.put("name", name)
                         temMAp.put("id", id)
                         sjs.add(temMAp)
-                        println(temMAp)
+                      //  Log.d("@@@temMap:","$temMAp")
                         //temMAp.clear()
                     } while (cursor.moveToNext())
-                    println(sjs)
-                    Log.d("look_sj", sjs.toString())
+
+                   // Log.d("@@@look_sj", sjs.toString())
                     val msg = Message()
                     msg.what = 0
                     hand.sendMessage(msg)
                     cursor.close()
+                }else{
+                    Log.d("@@@else","no data")
                 }
             }
             //查询题目
@@ -110,7 +112,7 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
                     do {
                         val temMAp = linkedMapOf<String, Any>()
                         val content = cursor.getString(cursor.getColumnIndex("content"))
-                        val sj_id = cursor.getString(cursor.getColumnIndex("sj_id"))
+                        val sj_idIn = cursor.getString(cursor.getColumnIndex("sj_id"))
                         val id = cursor.getString(cursor.getColumnIndex("id"))
                         val A = cursor.getString(cursor.getColumnIndex("A"))
                         val B = cursor.getString(cursor.getColumnIndex("B"))
@@ -119,7 +121,7 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
                         val answer = cursor.getString(cursor.getColumnIndex("answer"))
                         val answer_desc = cursor.getString(cursor.getColumnIndex("answer_desc"))
                         with(temMAp) {
-                            put("sj_id", sj_id)
+                            put("sj_id", sj_idIn)
                             put("id", id)
                             put("content", content.replace("<br/>", ""))
                             put("A", A.replace("<br/>", ""))
@@ -142,14 +144,13 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
 
         }
 
-        return false
+        return true
     }
 
     //收藏题目，更改题目状态,my_type:错题，收藏
     //传入：数据库对象，handle，题目类型，题目id
     fun wen_update(db: SQLiteDatabase, my_type: String, tm_id: String): Int {
-        //Log.d("update1", my_type)
-        //Log.d("update2", tm_id)
+
         val content = ContentValues()
         content.put("my_sort", my_type)
         val re = db.update("tm_dx", content, "id = ?", arrayOf(tm_id))
