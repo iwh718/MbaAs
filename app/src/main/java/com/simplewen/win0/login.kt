@@ -10,6 +10,9 @@ import com.simplewen.win0.main.MainActivity
 import com.simplewen.win0.modal.mySql
 import java.util.*
 
+/**
+ * 启动页
+ */
 class login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".left.view.jcShow">
+    tools:context=".left.view.activity.jcShow">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -13,10 +13,11 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         />
     <WebView
+        android:layout_marginTop="-5dp"
         android:id="@+id/jcWebView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     </WebView>
 

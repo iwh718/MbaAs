@@ -16,13 +16,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import com.simplewen.win0.R
-import com.simplewen.win0.R.id.toolbar
-import com.simplewen.win0.app.addNew
 import com.simplewen.win0.app.iwhDataOperator
 import com.simplewen.win0.app.iwhJoinQQ
 import com.simplewen.win0.app.iwhToast
 import com.simplewen.win0.center.iwh_fg_center
-import com.simplewen.win0.left.iwh_fg_left
+import com.simplewen.win0.left.view.fragment.iwh_fg_left
 import com.simplewen.win0.modal.ImportDB
 import com.simplewen.win0.modal.mySql
 import com.simplewen.win0.right.iwh_fg_right

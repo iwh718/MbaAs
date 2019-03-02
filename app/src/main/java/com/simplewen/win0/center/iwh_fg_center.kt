@@ -42,8 +42,7 @@ class iwh_fg_center: Fragment(){
                     0 -> {
                         sjs = temSql.sjs
                         adapter.notifyDataSetChanged()
-                        //
-                        // iwhToast("获取数据库！")
+
 
                     }
                 }

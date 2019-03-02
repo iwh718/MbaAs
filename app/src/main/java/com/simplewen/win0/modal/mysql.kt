@@ -39,12 +39,13 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
 
     override fun onCreate(db: SQLiteDatabase?) {
         try {
-            db!!.execSQL(Create_)//创建试卷表
+            db!!.disableWriteAheadLogging()
+            db.execSQL(Create_)//创建试卷表
             db.execSQL(Create_2)//创建表题目表
-            Log.d("dbInit", "")
-            Toast.makeText(mContext, "初始化数据库", Toast.LENGTH_SHORT).show()
+          //  Log.d("@@dbInit", "创建表！")
+            Toast.makeText(mContext, "初始化题库", Toast.LENGTH_SHORT).show()
         } catch (e: NullPointerException) {
-            Log.d("@@@error:",e.toString())
+            //Log.d("@@@error:",e.toString())
         }
     }
 
@@ -55,15 +56,13 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
      * @param sort_type 分类
      * @param sj_id 试卷id**/
     fun wen_query(db: SQLiteDatabase, hand: Handler, table_name: String, sort_type: String, sj_id: Int = 1): Boolean {
+        db.disableWriteAheadLogging()
         this.sjs.clear()
-        val tableName: String = table_name//获取查询的表
-        //var colums  = null
-        var selection: String? = null
+        var selection: String?
+        Log.d("@@sort:",sort_type)
         when (sort_type) {
             "all" -> {
-                if (sj_id == 0) selection = null
-                else selection = "sj_id = $sj_id"
-
+                if (sj_id == 0) selection = null else selection = "sj_id = $sj_id"
 
             }
             "error" -> {
@@ -77,14 +76,13 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
                 selection = "content LIKE '%${sort_type}%'"
             }
         }
-       // Log.d("@@@selection:",selection.toString())
-        val cursor = db.query(tableName, null, selection, null, null, null, null, null)
-
-
-        when (tableName) {
+      //  Log.d("@@@selection:",selection.toString())
+        val cursor = db.query(table_name, null, selection, null, null, null, null, null)
+       // val cursor = db.rawQuery("",null)
+        when (table_name) {
             //查询试卷
             "sj" -> {
-                Log.d("@@@cursor:","------${cursor.moveToFirst()}")
+                //Log.d("@@@cursor:","------${cursor.moveToFirst()}")
                 if (cursor.moveToFirst()) {
                     do {
                         var temMAp = linkedMapOf<String, Any>()
@@ -98,12 +96,14 @@ class mySql(context: Context, name: String, version: Int) : SQLiteOpenHelper(con
                     } while (cursor.moveToNext())
 
                    // Log.d("@@@look_sj", sjs.toString())
+                    cursor.close()
+                    db.close()
                     val msg = Message()
                     msg.what = 0
                     hand.sendMessage(msg)
-                    cursor.close()
+
                 }else{
-                    Log.d("@@@else","no data")
+                    //Log.d("@@@else","no data")
                 }
             }
             //查询题目

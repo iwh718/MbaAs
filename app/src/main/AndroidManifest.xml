@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simplewen.win0">
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".app.App"
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".left.left_show"
+            android:name=".left.view.activity.left_show"
             android:configChanges="orientation|keyboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -39,9 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".left.view.jcShow"/>
+        <activity android:name=".left.view.activity.jcShow"/>
         <activity android:name=".main.searchTm" />
-        <activity android:name=".left.PlayVideo"
+        <activity android:name=".left.view.activity.PlayVideo"
             android:screenOrientation="landscape"/>
     </application>
 

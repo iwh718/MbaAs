@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".left.left_show">
+    tools:context=".left.view.activity.left_show">
 
 
 
@@ -32,7 +32,7 @@
             </android.support.design.widget.TabLayout>
         </android.support.design.widget.AppBarLayout>
         <android.support.v4.view.ViewPager
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="50dp"
             android:id="@+id/left_show_viewpage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
