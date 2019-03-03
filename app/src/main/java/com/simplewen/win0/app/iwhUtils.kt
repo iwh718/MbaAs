@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.simplewen.win0.R
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -192,3 +193,28 @@ class iwhDataOperator {
 
 }
 
+/**
+ * 删除缓存
+ */
+fun deleteCache( videoIds:Int,type:Int):Boolean{
+    var flag  = false
+    var te =when(type){
+        0 -> "w"
+        1 -> "e"
+        2 -> "p"
+        else ->"w"
+    }
+
+       val file = File("${App._cache}/$te${videoIds+1}.mov")
+        if (!file.exists()) {
+           iwhToast("删除失败,文件不存在！")
+
+        } else {
+            if (file.isFile)
+                Log.d("删除完成！",videoIds.toString())
+                return file.delete()
+        }
+
+
+    return flag
+}

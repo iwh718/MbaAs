@@ -23,28 +23,20 @@ class PlayVideo : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_play_video)
         supportActionBar?.hide()
-
-        val chType = when(intent.getStringExtra("chType")){
-            "0" -> "w"
-            "1" -> "e"
-            "2" -> "p"
-            else -> "w"
-        }
-        iwhToast("第一次加载很慢，一会再来看看吧！")
-        val chNum = intent.getIntExtra("chNum",0)
-
+        val playUrl = intent.getStringExtra("playUrl")
+        //初始化播放
         playLoad.visibility = View.VISIBLE
-        Log.d("@@@playUrl:",Uri.parse(PreData.getPlayUrl(chNum,chType)).toString())
         with(playVideo){
-            setVideoURI(Uri.parse(PreData.getPlayUrl(chNum, chType)))
+            setVideoPath(playUrl)
             setOnPreparedListener{
                 playLoad.visibility = View.GONE
                 start()
 
             }
             setOnErrorListener{
-                _,_,_ ->
-                iwhToast("播放出错！")
+                _,what,_ ->
+                iwhToast("播放出错！:$what")
+                finish()
                 true
             }
             //播放监听
@@ -58,11 +50,7 @@ class PlayVideo : AppCompatActivity() {
                     true
                 }
             }
-
-
             this.setMediaController(android.widget.MediaController(this@PlayVideo))
-
-
         }
     }
 

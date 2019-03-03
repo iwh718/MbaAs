@@ -35,7 +35,7 @@ class left_show : AppCompatActivity() {
         var fg_list = arrayListOf<Fragment>()
         var vpgAdapter = iwh_view_page_adapter(supportFragmentManager, fg_list)
         tab.setTabTextColors(Color.WHITE, Color.WHITE)
-        tab.setSelectedTabIndicatorColor(Color.parseColor("#185639"))//tab下划线颜色
+        tab.setSelectedTabIndicatorColor(Color.parseColor("#ffffff"))//tab下划线颜色
         tab.isScrollContainer
         val ori =resources.configuration .orientation //获取屏幕方向
         if (ori ==  Configuration.ORIENTATION_LANDSCAPE) {

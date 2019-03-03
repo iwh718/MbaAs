@@ -7,13 +7,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="left_list_item0">公共基础</string>
-    <string name="left_list_item1">Word教程</string>
+    <string name="left_list_item1">Word基础与视频</string>
     <string name="upDate">
-       1.优化视频播放页面（服务器比较差，第一次播放耐心等待，，依然很鸡肋！）\n\n
-        2.修复安卓9.0 题库不显示bug \n\n
-        3.修复教程页面空白缝隙 \n\n
-        4.视频下载，可能会加入 \n\n
-        2019.03.02
+       1.增加视频缓存，单击下载，长按删除\n\n
+        2.优化点击效果 \n\n
+        2019.03.03
    </string>
     <string name="updateDesc">
          1.完成ppt图文教程。\n\n
@@ -36,8 +34,8 @@
        4.bug：横屏播放视频，无法缩小，只能竖屏自动缩小，待处理。\n\n
        2019.01.22
     </string>
-    <string name="left_list_item2">Excel教程</string>
-    <string name="left_list_item3">PowerPoint教程</string>
+    <string name="left_list_item2">Excel基础与视频</string>
+    <string name="left_list_item3">PowerPoint基础与视频</string>
     <string name="left_list_item4">考试大纲</string>
     <string name="left_list_item5">计算机基础知识</string>
 

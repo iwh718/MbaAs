@@ -24,7 +24,7 @@ import com.simplewen.win0.app.iwhToast
                mapOf("chNum" to 2,"title" to "PowerPoint相关练习"))
 
        //存储下载的web教程,word,excel,ppt
-       val jcVideoBaseUrl = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+       val jcVideoBaseUrl = "https://www.borebooks.top/MAS/jcs/videos"
        val jcUrls = arrayListOf("https://www.borebooks.top/MAS/local_html/word.html",
                "https://www.borebooks.top/MAS/local_html/excel.html",
                "https://www.borebooks.top/MAS/local_html/ppt.html")

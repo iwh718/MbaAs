@@ -23,7 +23,7 @@ interface DownLoadListener {
     /**
      * 下载成功
      */
-    fun onSuccess(vcp:Int,vcm:Int)
+    fun onSuccess(vcp:String,vcm:Int)
 
     /**
      * 下载失败
@@ -55,7 +55,7 @@ interface DownLoadListener {
 /**
  * 视频下载
  */
-class DownLoadVideos(private val listener: DownLoadListener,private val vChType:Int,private val vChNum:Int) : AsyncTask<String, Int, Int>() {
+class DownLoadVideos(private val listener: DownLoadListener,private val vChType:String,private val vChNum:Int) : AsyncTask<String, Int, Int>() {
     //视频大小
     private var contentLength:Long = 0
     private val TYPE_SUCCESS = 0//下载成功
@@ -144,24 +144,22 @@ class DownLoadVideos(private val listener: DownLoadListener,private val vChType:
      */
     override fun doInBackground(vararg params: String?): Int {
         var inputS: InputStream? = null
-        Log.d("@@params:",params.toString())
+        Log.d("@@params:",params[0])
         var savedFile: RandomAccessFile? = null
         var file: File? = null
         try {
             var downloadedLength: Long = 0//记录已下载的文件长度
             val downloadUrl = params[0]
             val fileName = downloadUrl?.substring(downloadUrl.lastIndexOf("/"))
-            val directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path
+            val directory = App.getContext().externalCacheDir.path
             file = File("$directory/$fileName")
-            Log.d("@@path:",directory)
+           // Log.d("@@path:",directory)
             if (file.exists()) {
                 downloadedLength = file.length()
 
-            }else{
-                Log.d("@@不存在！","-------")
             }
             val contentLength: Long = getContentLength(downloadUrl!!)
-            Log.d("@@fileSize:","$contentLength")
+           // Log.d("@@fileSize:","$contentLength")
             if (contentLength.toInt() == 0) {
                 return TYPE_ERROR
             } else if (contentLength == downloadedLength) {
@@ -171,7 +169,7 @@ class DownLoadVideos(private val listener: DownLoadListener,private val vChType:
             val client = OkHttpClient()
             val request = Request.Builder()
                     //断点下载，指定从哪个字节开始下载
-                    .addHeader("RANGE", "bytes=" + downloadedLength + "-")
+                    .addHeader("RANGE", "bytes=$downloadedLength-")
                     .url(downloadUrl)
                     .build()
             val response: Response = client.newCall(request).execute()

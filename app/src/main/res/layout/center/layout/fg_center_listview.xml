@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
    <android.support.v7.widget.CardView
        android:elevation="15dp"
+       android:background="@drawable/btn_water"
        android:padding="10dp"
 
        android:layout_width="match_parent"

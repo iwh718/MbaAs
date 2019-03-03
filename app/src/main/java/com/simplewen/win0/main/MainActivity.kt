@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        if(iwhDataOperator.getSHP("versionFlag","version",0) <= 7){
+        if(iwhDataOperator.getSHP("versionFlag","version",0) <= 8){
             AlertDialog.Builder(this@MainActivity)
                     .setTitle("更新内容！").setMessage(R.string.upDate).create().show()
-            iwhDataOperator.setSHP("versionFlag",8,"version")
+            iwhDataOperator.setSHP("versionFlag",9,"version")
         }
         val list_fg = arrayListOf<Fragment>(iwh_fg_left(),iwh_fg_center(),iwh_fg_right())
         val  iwh_tab = findViewById<TabLayout>(R.id.tab)
